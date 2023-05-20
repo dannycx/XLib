@@ -1,17 +1,17 @@
 # github
 
 ## github命令
-> git add . 添加文件
-> git commit -m "提交文件"
-> git push 合并至master
->
-> git config --global -l 查看当前配置
-> git config --global --unset http.proxy 取消代理
-> git remote rm origin 之前仓报错，删除一下
-> git remote add origin https://github.com/X 关联自己github项目
-> git config --global http.sslVerify false 取消SSL校验
-> git config --global user.name "dannycx" 用户名
-> git config --global user.email "xxx@xx.com" 邮箱
++ git add . 添加文件
++ git commit -m "提交文件"
++ git push 合并至master
+
++ git config --global -l 查看当前配置
++ git config --global --unset http.proxy 取消代理
++ git remote rm origin 之前仓报错，删除一下
++ git remote add origin https://github.com/X 关联自己github项目
++ git config --global http.sslVerify false 取消SSL校验
++ git config --global user.name "dannycx" 用户名
++ git config --global user.email "xxx@xx.com" 邮箱
 
 ## github SSH
 1. 生成密钥
