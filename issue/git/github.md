@@ -1,5 +1,9 @@
 # github
 
+## fatal: unable to access 'https://github.com/dannycx/XLib.git/': Failed to connect to github.com port 443 after 21081 ms: Timed out
+> git config --global --unset http.proxy 取消代理
+> git config --global --unset https.proxy 取消https代理
+
 ## github命令
 + git add . 添加文件
 + git commit -m "提交文件"
