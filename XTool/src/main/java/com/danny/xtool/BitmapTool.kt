@@ -23,7 +23,7 @@ import kotlin.math.roundToInt
  * @author x
  * @since 2023-05-21
  */
-object XBitmapUtil {
+object BitmapTool {
     /**
      * 压缩图片
      *
