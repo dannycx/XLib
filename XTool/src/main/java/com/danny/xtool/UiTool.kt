@@ -8,11 +8,13 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
+import android.content.res.Configuration
 import android.content.res.Resources.NotFoundException
 import android.graphics.Color
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewConfiguration
+import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 
@@ -289,5 +291,77 @@ object UiTool {
             }
         }
         return false
+    }
+
+
+    /**
+     * 曲面屏适配
+     *
+     * @param activity
+     * @param autoConfigId 需要扩充的布局id
+     */
+    fun setForRing(activity: Activity, autoConfigId: IntArray) {
+        var padding = dimensionPixelSize(activity, com.danny.common.R.dimen.dp_8)
+        val isLand = (activity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
+        if (isLand) {
+            padding = 0
+        }
+        for (id in autoConfigId) {
+            val subView = activity.findViewById<View>(id)
+            subView?.setPadding(padding, subView.paddingTop, padding, subView.paddingBottom)
+        }
+    }
+
+    /**
+     * 设置默认的margin
+     */
+    fun setDefaultMargin(activity: Activity, autoConfigId: IntArray?) {
+        autoConfigId?.let {
+            val margin = activity.resources.getDimensionPixelSize(com.danny.common.R.dimen.dp_24)
+            for (id in it) {
+                val subView = activity.findViewById<View>(id)
+                setMargin(subView, margin, margin)
+            }
+        }
+    }
+
+    fun setNoMargin(activity: Activity, autoConfigId: IntArray?) {
+        autoConfigId?.let {
+            val margin = activity.resources.getDimensionPixelSize(com.danny.common.R.dimen.dp_0)
+            for (id in it) {
+                val subView = activity.findViewById<View>(id)
+                setMargin(subView, margin, margin)
+            }
+        }
+    }
+
+    private fun setMargin(subView: View?, start: Int, end: Int) {
+        subView?.let {
+            when (it.layoutParams) {
+                is ViewGroup.MarginLayoutParams -> {
+                    val mlp = it.layoutParams as ViewGroup.MarginLayoutParams
+                    mlp.marginStart = start
+                    mlp.marginEnd = end
+                    it.layoutParams = mlp
+                }
+            }
+        }
+    }
+
+    /**
+     * 设置默认padding
+     */
+    fun setDefaultPadding(activity: Activity, autoConfigId: IntArray?) {
+        autoConfigId?.let {
+            val padding = activity.resources.getDimensionPixelSize(com.danny.common.R.dimen.dp_8)
+            for (id in it) {
+                val subView = activity.findViewById<View>(id)
+                setPadding(subView, padding, padding)
+            }
+        }
+    }
+
+    private fun setPadding(subView: View?, paddingStart: Int, paddingEnd: Int) {
+        subView?.setPadding(paddingStart, subView.paddingTop, paddingEnd, subView.paddingBottom)
     }
 }

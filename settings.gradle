@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "XLib"
 include ':app'
 include ':XTool'
+include ':XCommon'
