@@ -3,6 +3,10 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+def resDirs = [
+        'recycler'
+]
+
 android {
     namespace 'com.danny.xlib'
     compileSdk 33
@@ -44,6 +48,13 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    sourceSets {
+        main {
+            resDirs.forEach {
+                res.srcDirs += 'src/main/java/com/danny/xlib/' + it + '/res'
+            }
+        }
+    }
 }
 
 dependencies {
@@ -63,4 +74,9 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+
 }
