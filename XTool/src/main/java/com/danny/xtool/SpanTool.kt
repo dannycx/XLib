@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 x
+ * Copyright (c) 2023-2023 x
  */
 
 package com.danny.xtool
@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat
  * SPAN_EXCLUSIVE_EXCLUSIVE 不包括开始下标不包括结束
  *
  * @author danny
- * @since 2023/5/21
+ * @since 2023-05-21
  */
 object SpanTool {
     /**

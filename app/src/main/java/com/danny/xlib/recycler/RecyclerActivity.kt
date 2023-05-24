@@ -36,5 +36,4 @@ class RecyclerActivity : AppCompatActivity() {
         r.layoutManager = LinearLayoutManager(this)
         r.adapter = RecyclerAdapter(list, this) {}
     }
-
 }
