@@ -6,6 +6,7 @@ package com.danny.xtool
 
 import android.text.InputFilter
 import java.lang.StringBuilder
+import java.util.regex.Pattern
 import kotlin.experimental.and
 
 /**
@@ -120,5 +121,40 @@ object StringTool {
             }
             sb.toString()
         } ?: ""
+    }
+
+    /**
+     * 判断字符串是否仅为数字
+     */
+    fun isNumber(str: String): Boolean {
+        var i = str.length
+        while (--i >= 0) {
+            if (!Character.isDigit(str[i])) {
+                return false
+            }
+        }
+        return true
+    }
+
+    /**
+     * 判断字符串是否仅为数字：正则表达式
+     */
+    fun isNum(str: String): Boolean {
+        val pattern = Pattern.compile("[0-9]*")
+        return pattern.matcher(str).matches()
+    }
+
+    /**
+     * 判断字符串是否仅为数字：ASCII码
+     */
+    fun isNumAscii(str: String): Boolean {
+        var i = str.length
+        while (--i >= 0) {
+            val ch = str[i].toInt()
+            if (ch < 48 || ch > 57) {
+                return false
+            }
+        }
+        return true
     }
 }
