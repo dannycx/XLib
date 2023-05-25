@@ -42,5 +42,7 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:3.5.0'
 //    implementation 'com.google.zxing:core:3.4.1'
 
+    implementation 'androidx.palette:palette:1.0.0'
+    
     implementation project(':XCommon')
 }

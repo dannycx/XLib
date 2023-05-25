@@ -9,9 +9,11 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.BitmapFactory.Options
 import android.graphics.Canvas
+import android.graphics.drawable.ColorDrawable
 import android.os.Environment
 import android.text.TextUtils
 import android.view.View
+import androidx.palette.graphics.Palette
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -133,5 +135,19 @@ object BitmapTool {
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
         return baos.toByteArray()
+    }
+
+    /**
+     * 拾取图片颜色设置到指定控件
+     *
+     * @param bitmap 图片
+     */
+    fun palette(bitmap: Bitmap, view: View) {
+        Palette.from(bitmap).generate {
+            it?:return@generate
+            val swatch = it.vibrantSwatch as Palette.Swatch?
+            swatch?:return@generate
+            view.setBackgroundDrawable(ColorDrawable(swatch.rgb))
+        }
     }
 }

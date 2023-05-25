@@ -35,7 +35,7 @@ object SPTool {
         when(def) {
             is String -> return sp.getString(key, def)
             is Int -> return sp.getInt(key, def)
-            is Boolean -> sp.getBoolean(key, def)
+            is Boolean -> return sp.getBoolean(key, def)
             is Float -> return sp.getFloat(key, def)
             is Long -> return sp.getLong(key, def)
             is Set<*> -> return sp.getStringSet(key, def as Set<String>)

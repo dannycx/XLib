@@ -11,12 +11,18 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources.NotFoundException
 import android.graphics.Color
+import android.graphics.drawable.AnimationDrawable
+import android.graphics.drawable.BitmapDrawable
+import android.os.Process
+import android.os.SystemClock
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewConfiguration
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import kotlin.system.exitProcess
 
 /**
  * UI工具
@@ -364,4 +370,71 @@ object UiTool {
     private fun setPadding(subView: View?, paddingStart: Int, paddingEnd: Int) {
         subView?.setPadding(paddingStart, subView.paddingTop, paddingEnd, subView.paddingBottom)
     }
+
+    private var startTime: Long = 0
+    /**
+     * 双击退出应用
+     */
+    fun exitApp(context: Context) {
+        if (System.currentTimeMillis() - startTime < 1000) {
+            removeAllPage()
+            Process.killProcess(0)
+            exitProcess(0)
+        } else {
+            startTime = System.currentTimeMillis()
+            Toast.makeText(context, "再点击一次退出应用", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // 数字为几,就是几击事件
+    private val hits = LongArray(3)
+    /**
+     * 多击事件
+     */
+    fun multipleClick(context: Context) {
+        System.arraycopy(hits, 1, hits, 0, hits.size - 1)
+        hits[hits.size - 1] = SystemClock.uptimeMillis()
+        if (hits[hits.size - 1] - hits[0] < 1000) {
+            // 3击事件处理
+
+        }
+    }
+
+    /**
+     * 开机启动动画,AnimationDrawable动画图片资源回收
+     */
+    fun recycleAnimDrawable(drawable: AnimationDrawable?) {
+        drawable?:return
+        drawable.stop()
+        for (i in 0 until drawable.numberOfFrames) {
+            val frame = drawable.getFrame(i)
+            if (frame is BitmapDrawable) {
+                frame.bitmap.recycle()
+            }
+            frame.callback = null
+        }
+        drawable.callback = null
+    }
+
+    private val mActivity = ArrayList<Activity>()
+    fun addActivity(activity: Activity) {
+        mActivity.add(activity)
+    }
+
+    fun removeActivity(activity: Activity) {
+        if (activity in mActivity) {
+            mActivity.remove(activity)
+        }
+    }
+
+    fun removeAllPage() {
+        for (activity in mActivity) {
+            if (!activity.isFinishing) {
+                activity.finish()
+            }
+        }
+        mActivity.clear()
+    }
+
+
 }
