@@ -27,8 +27,13 @@ import android.view.WindowManager
 import android.view.animation.LinearInterpolator
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import java.io.ByteArrayOutputStream
+import java.io.IOException
+import java.io.InputStream
+import java.io.UnsupportedEncodingException
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
+import java.nio.charset.Charset
 import java.util.Locale
 import kotlin.system.exitProcess
 
@@ -538,4 +543,70 @@ object UiTool {
         }
         return SN
     }
+
+    /**
+     * 曲面屏适配
+     *
+     * @param activity 当前activity
+     * @param autoConfigId 适配控件id
+     */
+    fun forRing(activity: Activity, autoConfigId: IntArray) {
+        var dp8 = dimensionPixelSize(activity, com.danny.common.R.dimen.dp_8)
+        val isLand = activity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+        if (isLand) {
+            dp8 = 0
+        }
+        for (i in autoConfigId.indices) {
+            val subView = activity.findViewById<View>(autoConfigId[i])
+            subView?.setPadding(dp8, subView.paddingTop, dp8, subView.paddingBottom)
+        }
+    }
+
+    /**
+     * 获取asset资源
+     */
+    fun assetString(context: Context, name: String): String? {
+        val output = ByteArrayOutputStream()
+        val buf = ByteArray(1024)
+        var ch = -1
+        var byteData: ByteArray? = null
+        var input: InputStream? = null
+        try {
+            input = context.assets.open(name)
+        } catch (e: IOException) {
+
+        }
+
+        input?: return null
+        // Read the entire asset into a local byte buffer.
+        try {
+            ch = input.read(buf)
+            while (ch != -1) {
+                output.write(buf, 0, ch)
+                ch = input.read(buf)
+            }
+            byteData = output.toByteArray()
+            output.close()
+        } catch (e: IOException) {
+
+        }
+        val data: String? =
+            try {
+                String(byteData!!, Charset.forName("UTF-8"))
+            } catch (e: UnsupportedEncodingException) {
+                null
+            }
+        return data
+    }
+
+    /**
+     * 集合是否为空
+     */
+    fun isEmpty(list: Collection<Any?>?): Boolean = list.isNullOrEmpty()
+
+    /**
+     * 集合是否为空
+     */
+    fun isEmpty(map: Map<Any?, Any?>?): Boolean =
+        map.isNullOrEmpty() || map.keys.isEmpty()
 }
