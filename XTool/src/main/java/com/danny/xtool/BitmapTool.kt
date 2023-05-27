@@ -9,6 +9,12 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.BitmapFactory.Options
 import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
+import android.graphics.Rect
+import android.graphics.RectF
 import android.graphics.drawable.ColorDrawable
 import android.os.Environment
 import android.text.TextUtils
@@ -28,13 +34,17 @@ import kotlin.math.roundToInt
 object BitmapTool {
     /**
      * 压缩图片
+     * 将inJustDecodeBounds设为true
+     * 从options读取原图宽高
+     * 结合view大小计算采样率
+     * 将inJustDecodeBounds设为false从新加载图片
      *
      * @param res Resources对象
      * @param resId 资源id
      * @param width 显示宽
      * @param height 显示高
      */
-    fun decodeSampleBitmapFromResource(res: Resources, resId: Int, width: Int, height: Int): Bitmap {
+    fun compressBitmap(res: Resources, resId: Int, width: Int, height: Int): Bitmap {
         // 第一次解析将inJustDecodeBounds设置为true，来获取图片大小
         val options = Options()
         options.inJustDecodeBounds = true
@@ -61,12 +71,74 @@ object BitmapTool {
         val bitmapHeight = options.outHeight
         var inSampleSize = 1
         if (width < bitmapWidth || height < bitmapHeight) {
+            // 方式一
             // 计算实际宽高比
             val widthRatio = (bitmapWidth / width).toDouble().roundToInt()
             val heightRatio = (bitmapHeight / height).toDouble().roundToInt()
             inSampleSize = if (heightRatio < widthRatio) heightRatio else widthRatio
+
+            // 方式二
+//            val halfBitmapWidth: Int = bitmapWidth / 2
+//            val halfBitmapHeight: Int = bitmapHeight / 2
+//            // 计算缩放比,是2的指数
+//            while (halfBitmapWidth / inSampleSize >= width
+//                && halfBitmapHeight / inSampleSize >= height) {
+//                inSampleSize *= 2
+//            }
         }
         return inSampleSize
+    }
+
+    /**
+     * 纵向拼接bitmap
+     *
+     * @param first 第一张bitmap
+     * @param second 第二张bitmap
+     * @return 拼接的bitmap
+     */
+    fun addBitmap(first: Bitmap, second: Bitmap): Bitmap {
+        val width = first.width
+        val height = first.height + second.height
+
+        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        canvas.drawBitmap(first, 0f, 0f, null)
+        canvas.drawBitmap(second, 0f, first.height.toFloat(), null)
+        return bitmap
+    }
+
+    /**
+     * 生成透明背景的圆形图片
+     *
+     * @param bitmap 源bitmap
+     * @return 透明背景的圆形图片bitmap
+     */
+    fun createCircleBitmap(bitmap: Bitmap?): Bitmap? {
+        bitmap?:return null
+        try {
+            val circleBitmap = Bitmap.createBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(circleBitmap)
+            val paint = Paint()
+            val rect = Rect(0, 0, bitmap.width, bitmap.height)
+            val rectF = RectF(Rect(0, 0, bitmap.width, bitmap.height))
+
+            // 已短边为准
+            val roundPx = if (bitmap.width > bitmap.height) {
+                bitmap.height / 2f
+            } else {
+                bitmap.width / 2f
+            }
+            paint.isAntiAlias = true
+            paint.setARGB(0, 0, 0, 0)
+            paint.color = Color.WHITE
+            canvas.drawRoundRect(rectF, roundPx, roundPx, paint)
+            paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+            val src = Rect(0, 0, bitmap.width, bitmap.height)
+            canvas.drawBitmap(bitmap, src, rect, paint)
+            return circleBitmap
+        } catch (e: Exception) {
+            return bitmap
+        }
     }
 
     /**
