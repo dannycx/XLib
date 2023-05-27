@@ -4,6 +4,7 @@
 
 package com.danny.xtool
 
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityManager
@@ -11,17 +12,24 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources.NotFoundException
 import android.graphics.Color
+import android.graphics.Rect
 import android.graphics.drawable.AnimationDrawable
 import android.graphics.drawable.BitmapDrawable
+import android.os.Build
 import android.os.Process
 import android.os.SystemClock
+import android.text.TextUtils
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewConfiguration
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.view.animation.LinearInterpolator
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import java.lang.reflect.InvocationTargetException
+import java.lang.reflect.Method
+import java.util.Locale
 import kotlin.system.exitProcess
 
 /**
@@ -436,5 +444,98 @@ object UiTool {
         mActivity.clear()
     }
 
+    fun keyBoard(root: View, view: View, isNormal: Boolean) {
+        val rect = Rect()
+        root.getWindowVisibleDisplayFrame(rect)
 
+        // 不可见高度
+        val invisibleHeight = root.rootView.height - rect.bottom
+        val keyboardHeight = screenDisplay(root.context)[1] / 4
+        if (invisibleHeight > keyboardHeight) {
+            if (isNormal) {
+                // 上移
+                val animator = ObjectAnimator.ofFloat(root, "translationY", 0f, -107f)
+                animator.duration = 300
+                animator.interpolator = LinearInterpolator()
+                animator.start()
+            }
+        } else {
+            // 下移
+            if (!isNormal) {
+                val animator = ObjectAnimator.ofFloat(root, "translationY", root.translationY, 0f)
+                animator.duration = 300
+                animator.interpolator = LinearInterpolator()
+                animator.start()
+            }
+        }
+    }
+
+    /**
+     * 获取设备系统语言
+     */
+    fun language() = Locale.getDefault().language
+
+    /**
+     * 获取系统属性值
+     *      -ro.build.version.emui     emui版本>=11(android11.+)
+     *      -ro.build.version.magic    荣耀版本>=4(android11.+)
+     */
+    fun systemProp(key: String): String? {
+        var value: String? = null
+        var c: Class<*>? = null
+        var method: Method? = null
+        try {
+            c = Class.forName("android.os.SystemProperties")
+            method = c.getDeclaredMethod("get", String::class.java)
+        } catch (e: ClassNotFoundException) {
+
+        } catch (e: NoSuchMethodException) {
+
+        }
+        method?:return null
+        value =
+            try {
+                method.invoke(c, key) as String
+            } catch (e: IllegalAccessException) {
+                null
+            } catch (e: InvocationTargetException) {
+                null
+            }
+        return value
+    }
+
+    private var SN: String = ""
+    fun sn(): String {
+        var isResultValid = TextUtils.isEmpty(SN) || Build.UNKNOWN == SN
+        if (isResultValid) {
+            try {
+                val method = Class.forName("android.os.SystemProperties")
+                    .getDeclaredMethod("get", String::class.java)
+                SN = method.invoke(null, "ro.serialno") as String
+            } catch (e: ClassNotFoundException) {
+
+            } catch (e: NoSuchMethodException) {
+
+            } catch (e: IllegalAccessException) {
+
+            } catch (e: InvocationTargetException) {
+
+            }
+            isResultValid =  TextUtils.isEmpty(SN) || Build.UNKNOWN == SN
+            if (isResultValid) {
+                // 低版本
+                SN = Build.USER
+            }
+
+            isResultValid =  TextUtils.isEmpty(SN) || Build.UNKNOWN == SN
+            if (isResultValid && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                try {
+                    SN = Build.getSerial()
+                } catch (e: SecurityException) {
+
+                }
+            }
+        }
+        return SN
+    }
 }
