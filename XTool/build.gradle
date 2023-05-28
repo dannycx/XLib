@@ -43,6 +43,9 @@ dependencies {
 //    implementation 'com.google.zxing:core:3.4.1'
 
     implementation 'androidx.palette:palette:1.0.0'
-    
+//    implementation 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0'
+    api 'com.tencent.mm.opensdk:wechat-sdk-android:+'
+
+
     implementation project(':XCommon')
 }
