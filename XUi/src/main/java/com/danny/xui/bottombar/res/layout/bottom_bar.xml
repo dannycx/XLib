@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioGroup
+            android:id="@+id/x_bottom_group"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_56"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/bottom_home"
+                style="@style/RadioButtonStyle"
+                android:checked="true"
+                android:text="主页" />
+
+            <RadioButton
+                android:id="@+id/bottom_message"
+                style="@style/RadioButtonStyle"
+                android:text="消息" />
+
+            <RadioButton
+                android:id="@+id/bottom_me"
+                style="@style/RadioButtonStyle"
+                android:text="我的" />
+        </RadioGroup>
+    </FrameLayout>
+</layout>
