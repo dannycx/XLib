@@ -9,6 +9,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources.NotFoundException
 import android.graphics.Color
@@ -632,4 +633,10 @@ object UiTool {
         val flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return flag == Configuration.UI_MODE_NIGHT_YES
     }
+}
+
+inline fun <reified T> startActivity(context: Context, block: Intent.() -> Unit) {
+    val intent = Intent(context, T::class.java)
+    intent.block()
+    context.startActivity(intent)
 }
