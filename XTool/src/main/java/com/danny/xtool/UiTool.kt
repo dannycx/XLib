@@ -609,4 +609,27 @@ object UiTool {
      */
     fun isEmpty(map: Map<Any?, Any?>?): Boolean =
         map.isNullOrEmpty() || map.keys.isEmpty()
+
+    /**
+     * 当前进程名称
+     */
+    fun curProcessName(context: Context): String? {
+        val pid = Process.myPid()
+        val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val runningProcessInfo = am.runningAppProcesses.iterator() as Iterator<ActivityManager.RunningAppProcessInfo>
+        while (runningProcessInfo.hasNext()) {
+            if (runningProcessInfo.next().pid == pid) {
+                return runningProcessInfo.next().processName
+            }
+        }
+        return null
+    }
+
+    /**
+     * 是否是深色主题
+     */
+    fun isDarkTheme(context: Context): Boolean {
+        val flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return flag == Configuration.UI_MODE_NIGHT_YES
+    }
 }
