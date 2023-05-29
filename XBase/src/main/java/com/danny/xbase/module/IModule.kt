@@ -4,4 +4,4 @@
 
 package com.danny.xbase.module
 
-interface XModule {}
+interface IModule {}

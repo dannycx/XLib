@@ -12,7 +12,7 @@ import android.content.Context
  * @author danny
  * @since 2023-05-28
  */
-interface IShare: XModule {
+interface IShare: IModule {
     fun registerWeChart(context: Context, appId: String)
     fun unregisterWeChart(context: Context)
 }
