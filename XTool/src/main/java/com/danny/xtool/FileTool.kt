@@ -68,6 +68,27 @@ object FileTool {
 }
 
 /**
+ * 升序
+ */
+class FileAscComparator: Comparator<File?> {
+    override fun compare(o1: File?, o2: File?): Int {
+        o1?: return 0
+        o2?: return 0
+        if (o1.isDirectory && o2.isDirectory) {
+            // 文件夹
+            return o1.name.compareTo(o2.name)
+        }
+        if (o1.isDirectory && o2.isFile) {
+            return -1
+        }
+        if (o1.isFile && o2.isDirectory) {
+            return 1
+        }
+        return o1.name.compareTo(o2.name)
+    }
+}
+
+/**
  * 降序
  */
 class FileDesComparator: Comparator<java.io.File?> {
