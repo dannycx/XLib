@@ -66,3 +66,24 @@ object FileTool {
         return false
     }
 }
+
+/**
+ * 降序
+ */
+class FileDesComparator: Comparator<java.io.File?> {
+    override fun compare(o1: java.io.File?, o2: java.io.File?): Int {
+        o1?: return 0
+        o2?: return 0
+        if (o1.isDirectory && o2.isDirectory) {
+            // 文件夹
+            return o2.name.compareTo(o1.name)
+        }
+        if (o1.isDirectory && o2.isFile) {
+            return 1
+        }
+        if (o1.isFile && o2.isDirectory) {
+            return -1
+        }
+        return o2.name.compareTo(o1.name)
+    }
+}
