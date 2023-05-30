@@ -108,3 +108,25 @@ class FileDesComparator: Comparator<java.io.File?> {
         return o2.name.compareTo(o1.name)
     }
 }
+
+/**
+ * 升序
+ */
+class FileDateAscComparator: Comparator<File?> {
+    override fun compare(o1: File?, o2: File?): Int {
+        o1?: return 0
+        o2?: return 0
+        return o1.lastModified().compareTo(o2.lastModified())
+    }
+}
+
+/**
+ * 降序
+ */
+class FileDateDesComparator: Comparator<File?> {
+    override fun compare(o1: File?, o2: File?): Int {
+        o1?: return 0
+        o2?: return 0
+        return o2.lastModified().compareTo(o1.lastModified())
+    }
+}
