@@ -65,6 +65,23 @@ object FileTool {
     fun space(size: Long): Boolean {
         return false
     }
+    
+    /**
+     * uri转file
+     */
+    fun toFile(uri: Uri) = uri.toFile()
+
+    /**
+     * 是否小于指定大小
+	 *     4M = 4 * 1024 * 1024
+     */
+    fun isLittleFile(uri: Uri, size: Long): Boolean {
+        val file = toFile(uri)
+        val fileInputStream = FileInputStream(file)
+        val fileSizeInBytes = fileInputStream.channel.size()
+        fileInputStream.close()
+        return fileSizeInBytes < size
+    }
 }
 
 /**
