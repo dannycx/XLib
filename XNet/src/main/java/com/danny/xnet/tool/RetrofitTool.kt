@@ -1,4 +1,8 @@
-package com.danny.xnet
+/*
+ * Copyright (c) 2023-2023 x
+ */
+
+package com.danny.xnet.tool
 
 import android.os.Environment
 import android.os.Environment.DIRECTORY_DOWNLOADS
@@ -15,6 +19,12 @@ import retrofit2.http.*
 import java.io.*
 import kotlin.math.roundToInt
 
+/**
+ * 网络请求工具
+ *
+ * @author x
+ * @since 2023-06-02
+ */
 class RetrofitTool {
     companion object{
         const val NORMAL_FILE_LIMIT = 60 * 1024 * 1024
@@ -192,6 +202,5 @@ class RetrofitTool {
         @Streaming
         @GET
         fun downloadLargeFile(@Url url: String, @Header("Authorization") auth: String): Call<ResponseBody>
-
     }
 }
