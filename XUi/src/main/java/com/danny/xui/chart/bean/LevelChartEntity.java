@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class XLevelChartEntity {
+public class LevelChartEntity {
     private int maxData;
     private int minData;
     private String unit;// 柱子单位
     private String timeLine;// 单类别竖线
     private List<String> verticals;// 多类别竖线
-    private List<XLevelChartBean> items;// 柱状图数据
-    private List<XLevelChartPopBean> popBeanList;// pop
+    private List<LevelChartBean> items;// 柱状图数据
+    private List<LevelChartPopBean> popBeanList;// pop
     private List<String> filters;// 筛选
     private String curFilter;// 当前选择项
 
-    public void setItems(List<XLevelChartBean> items) {
+    public void setItems(List<LevelChartBean> items) {
         this.items = items;
     }
 
-    public XLevelChartEntity getData() {
-        XLevelChartEntity entity = new XLevelChartEntity();
-        List<XLevelChartBean> list = new ArrayList<>();
+    public LevelChartEntity getData() {
+        LevelChartEntity entity = new LevelChartEntity();
+        List<LevelChartBean> list = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
-            XLevelChartBean bean = new XLevelChartBean();
+            LevelChartBean bean = new LevelChartBean();
             bean.setTitle("text");
             List<String> yLabels = new ArrayList<>();
             for (int j = 0; j < 3; j++) {
@@ -73,11 +73,11 @@ public class XLevelChartEntity {
         return verticals;
     }
 
-    public List<XLevelChartBean> getItems() {
+    public List<LevelChartBean> getItems() {
         return items;
     }
 
-    public List<XLevelChartPopBean> getPopBeanList() {
+    public List<LevelChartPopBean> getPopBeanList() {
         return popBeanList;
     }
 

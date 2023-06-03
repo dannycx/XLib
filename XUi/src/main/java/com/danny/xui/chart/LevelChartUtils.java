@@ -3,8 +3,8 @@ package com.danny.xui.chart;
 import android.graphics.Paint;
 import android.text.TextUtils;
 
-import com.x.xui.widget.chart.bean.XLevelChartData;
-import com.x.xui.widget.chart.bean.XLevelChartEntity;
+import com.danny.xui.chart.bean.LevelChartData;
+import com.danny.xui.chart.bean.LevelChartEntity;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -12,8 +12,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class LevelChartUtils {
-
-
     public static List<String> getXLabel(List<String> data) {
         List<String> result = new ArrayList<>();
         int size = data.size();
@@ -78,8 +76,8 @@ public class LevelChartUtils {
      *
      * @return 柱状图数据
      */
-    public static XLevelChartData getXLabelData(int maxData, int minData, int scaleSize) {
-        XLevelChartData data = new XLevelChartData();
+    public static LevelChartData getXLabelData(int maxData, int minData, int scaleSize) {
+        LevelChartData data = new LevelChartData();
         int max = maxData;
         int min = minData;
         int scale = 0;
@@ -119,7 +117,7 @@ public class LevelChartUtils {
         return getYLabel(data, scale, scaleSize);
     }
 
-    private static XLevelChartData getYLabel(XLevelChartData data, int scale, int scaleSize) {
+    private static LevelChartData getYLabel(LevelChartData data, int scale, int scaleSize) {
         List<String> xLabel = new ArrayList<>();
         List<Long> label = new ArrayList<>();
         for (int i = 0; i < scaleSize + 1; i++) {
@@ -153,7 +151,7 @@ public class LevelChartUtils {
     }
 
 
-    public static void setMaxAndMinData(List<Integer> data, XLevelChartEntity entity) {
+    public static void setMaxAndMinData(List<Integer> data, LevelChartEntity entity) {
         Collections.sort(data);
         entity.setMinData(data.get(0));
         entity.setMaxData((int) getMaxData(data.get(data.size() - 1), 0, false));

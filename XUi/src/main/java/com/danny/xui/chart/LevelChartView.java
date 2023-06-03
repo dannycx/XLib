@@ -14,13 +14,11 @@ import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 
-
-import com.x.xtools.XArrayUtil;
-import com.x.xtools.XUiUtil;
-import com.x.xui.widget.chart.bean.XLevelChartBean;
-import com.x.xui.widget.chart.bean.XLevelChartData;
-import com.x.xui.widget.chart.bean.XLevelChartEntity;
-import com.x.xui.widget.chart.bean.XLevelChartInfo;
+import com.danny.xtool.UiTool;
+import com.danny.xui.chart.bean.LevelChartBean;
+import com.danny.xui.chart.bean.LevelChartData;
+import com.danny.xui.chart.bean.LevelChartEntity;
+import com.danny.xui.chart.bean.LevelChartInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +47,8 @@ public class LevelChartView extends View {
     private Paint linePaint;// 画线
     private DashPathEffect pathEffect;// 虚线
     private DashPathEffect effect;// 实线
-    private XLevelChartEntity entity;
-    private XLevelChartInfo info;
+    private LevelChartEntity entity;
+    private LevelChartInfo info;
     private LevelChartListener levelChartListener;
 
     private int yLabelTextWidth;// y轴文字最大宽度
@@ -72,17 +70,17 @@ public class LevelChartView extends View {
     }
 
     private void initParams(Context context) {
-        dp0_33 = XUiUtil.dp2px(context, 0.33f);
-        dp3 = XUiUtil.dp2px(context, 3);
-        dp4 = XUiUtil.dp2px(context, 4);
-        dp8 = XUiUtil.dp2px(context, 8);
-        dp10 = XUiUtil.dp2px(context, 10);
-        dp11 = XUiUtil.dp2px(context, 11);
-        dp15 = XUiUtil.dp2px(context, 15);
-        sp9 = XUiUtil.sp2Px(context, 9);
+        dp0_33 = UiTool.INSTANCE.dp2px(context, 0.33f);
+        dp3 = UiTool.INSTANCE.dp2px(context, 3);
+        dp4 = UiTool.INSTANCE.dp2px(context, 4);
+        dp8 = UiTool.INSTANCE.dp2px(context, 8);
+        dp10 = UiTool.INSTANCE.dp2px(context, 10);
+        dp11 = UiTool.INSTANCE.dp2px(context, 11);
+        dp15 = UiTool.INSTANCE.dp2px(context, 15);
+        sp9 = UiTool.INSTANCE.sp2px(context, 9);
         margin = 20;
         textMarginRight = dp10;
-        yLabelTextWidth = XUiUtil.dp2px(context, 100);
+        yLabelTextWidth = UiTool.INSTANCE.dp2px(context, 100);
 
         xPaint = new Paint();
         xPaint.setStyle(Paint.Style.FILL);
@@ -114,13 +112,13 @@ public class LevelChartView extends View {
         this.levelChartListener = levelChartListener;
     }
 
-    public void setData(XLevelChartEntity chartEntity, XLevelChartInfo chartInfo) {
+    public void setData(LevelChartEntity chartEntity, LevelChartInfo chartInfo) {
         entity = chartEntity;
         info = chartInfo;
         dataList = getRateData();
         List<Integer> temp = dataList;
         LevelChartUtils.setMaxAndMinData(temp, entity);
-        XLevelChartData chartData = LevelChartUtils.getXLabelData(entity.getMaxData(), entity.getMinData(), info.getxCount());
+        LevelChartData chartData = LevelChartUtils.getXLabelData(entity.getMaxData(), entity.getMinData(), info.getxCount());
         startData = chartData.getStartData();
         segmentLength = chartData.getSegment();
         xLabel = LevelChartUtils.getXLabel(chartData.getxLabel());
@@ -235,7 +233,7 @@ public class LevelChartView extends View {
         allPaint.setStyle(Paint.Style.FILL);
         int group = entity.getItems().size();
         for (int j = group - 1; j >= 0; j--) {
-            XLevelChartBean levelChartBean = entity.getItems().get(j);
+            LevelChartBean levelChartBean = entity.getItems().get(j);
             List<List<String>> colorNames = levelChartBean.getColorNames();
             List<String> yLabel = levelChartBean.getyLabels();
             yLabelLength = yLabel.size();
@@ -319,7 +317,7 @@ public class LevelChartView extends View {
 
             if (info.isNeedVerticalLine()) {
                 float avgStartX;
-                if (!XArrayUtil.isEmpty(entity.getVerticals())) {// 竖线
+                if (!UiTool.INSTANCE.isEmpty(entity.getVerticals())) {// 竖线
                     List<String> verticals = entity.getVerticals();
                     String vertical = verticals.get(j);
                     if (TextUtils.isEmpty(vertical) || "-".equals(vertical)) {
@@ -351,7 +349,7 @@ public class LevelChartView extends View {
                 String popStr = avgs.get(j) + entity.getUnit();
                 if (!TextUtils.isEmpty(entity.getTimeLine())) {
                     popStr = entity.getTimeLine() + entity.getUnit();
-                } else if (!XArrayUtil.isEmpty(entity.getVerticals())) {
+                } else if (!UiTool.INSTANCE.isEmpty(entity.getVerticals())) {
                     popStr = entity.getVerticals().get(j) + entity.getUnit();
                 }
 

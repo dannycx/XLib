@@ -16,7 +16,6 @@ import android.view.View;
  * @author danny
  * @date 2018/9/28.
  */
-
 public class ExpandTextView extends AppCompatTextView {
     private final String TEXT_EXPAND = " 全文";
     private final String TEXT_CLOSE = " 收起";

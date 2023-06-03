@@ -2,7 +2,7 @@ package com.danny.xui.chart.bean;
 
 import java.util.List;
 
-public class XLevelChartBean {
+public class LevelChartBean {
     private String title;
     private List<String> yLabels;
     private List<List<String>> xRates;

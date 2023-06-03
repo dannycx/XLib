@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.x.xui.R;
+import com.danny.xui.R;
 
 import java.util.ArrayList;
 import java.util.List;

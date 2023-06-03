@@ -6,13 +6,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.x.xtools.XThemeUtil;
-import com.x.xtools.XUiUtil;
-import com.x.xui.widget.chart.bean.XLevelChartInfo;
-
+import com.danny.xtool.UiTool;
+import com.danny.xui.chart.bean.LevelChartInfo;
 
 public class LevelChartPop extends RelativeLayout {
-    private XLevelChartInfo chartInfo;
+    private LevelChartInfo chartInfo;
     private LevelChartView chartView;
     private LinearLayout bubbleLayout;
 
@@ -28,15 +26,15 @@ public class LevelChartPop extends RelativeLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    public void initView(Context context, XLevelChartInfo info) {
+    public void initView(Context context, LevelChartInfo info) {
         chartInfo = info;
         if (info == null) {
-            chartInfo = new XLevelChartInfo();
+            chartInfo = new LevelChartInfo();
         }
 
         chartView = new LevelChartView(context);
         LayoutParams chartParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                XUiUtil.getDimensionPixelSize(context, chartInfo.getChartHeightRes()));
+                UiTool.INSTANCE.dimensionPixelSize(context, chartInfo.getChartHeightRes()));
         chartParams.topMargin = 10;
 //        chartParams.addRule(RelativeLayout.BELOW, getId());
         chartView.setLayoutParams(chartParams);

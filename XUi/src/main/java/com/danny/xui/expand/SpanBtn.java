@@ -5,9 +5,6 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 
-import com.x.xui.R;
-
-
 /**
  * Created by 75955 on 2018/10/6.
  */
@@ -18,7 +15,7 @@ public class SpanBtn extends ClickableSpan {
     private Context context;
 
     public SpanBtn(View.OnClickListener listener, Context context) {
-        this(listener, R.color.color_click_span, context);
+        this(listener, com.danny.common.R.color.color_007eff, context);
     }
 
     public SpanBtn(View.OnClickListener listener, int color, Context context) {

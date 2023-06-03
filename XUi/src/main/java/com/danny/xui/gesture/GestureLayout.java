@@ -5,9 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.x.xtools.XThemeUtil;
-import com.x.xtools.XUiUtil;
-import com.x.xui.R;
+import com.danny.xtool.UiTool;
+import com.danny.xui.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,6 @@ import java.util.List;
  * 手势密码父容器
  * Created by 75955 on 2018/9/6.
  */
-
 public class GestureLayout extends ViewGroup {
     private int base = 4;
     private int[] screenDisplay;
@@ -36,7 +34,7 @@ public class GestureLayout extends ViewGroup {
      */
     public GestureLayout(Context context, int width, boolean isVerify, String pwd, GestureDrawLine.Callback callback) {
         super(context);
-        screenDisplay = XUiUtil.getScreenDisplay(context);
+        screenDisplay = UiTool.INSTANCE.screenDisplay(context);
         blackWidth = width == 0 ? screenDisplay[0] / 3 : width / 3;
         this.context = context;
         this.isVerify = isVerify;
@@ -48,7 +46,7 @@ public class GestureLayout extends ViewGroup {
     private void addChild() {
         for (int i = 0; i < 9; i++) {
             ImageView image = new ImageView(context);
-            image.setBackgroundResource(R.drawable.state_normal);
+            image.setBackgroundResource(R.mipmap.state_normal);
             this.addView(image);
             invalidate();
             int row = i / 3;

@@ -13,18 +13,16 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
-import com.x.xtools.XToastUtil;
-import com.x.xtools.XThemeUtil;
-import com.x.xtools.XUiUtil;
-import com.x.xui.R;
+import com.danny.xtool.UiTool;
+import com.danny.xui.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class CheckPopupWindow extends PopupWindow implements View.OnClickListener {
-
     private Context context;
     private CheckAdapter adapter;
     private List<String> dataList;
@@ -54,7 +52,7 @@ public class CheckPopupWindow extends PopupWindow implements View.OnClickListene
         setTouchable(true);
         setOutsideTouchable(true);
 
-        setWidth(XUiUtil.dp2px(context, 500));
+        setWidth(UiTool.INSTANCE.dp2px(context, 500));
         setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
         setOnDismissListener(new OnDismissListener() {
             @Override
@@ -89,7 +87,7 @@ public class CheckPopupWindow extends PopupWindow implements View.OnClickListene
 
         if (dataList.size() > 5) {
             ViewGroup.LayoutParams params = new ConstraintLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, XUiUtil.dp2px(context, 177));
+                    ViewGroup.LayoutParams.MATCH_PARENT, UiTool.INSTANCE.dp2px(context, 177));
             listView.setLayoutParams(params);
         }
         adapter = new CheckAdapter(context, dataList);
@@ -102,7 +100,7 @@ public class CheckPopupWindow extends PopupWindow implements View.OnClickListene
         int id = v.getId();
         if (id == R.id.complete) {
             if (selectList.size() < 2) {
-                XToastUtil.shortShow("不能少于2个");
+                Toast.makeText(context, "不能少于2个", Toast.LENGTH_SHORT).show();
                 return;
             }
             listener.complete(changeListToString(selectList));

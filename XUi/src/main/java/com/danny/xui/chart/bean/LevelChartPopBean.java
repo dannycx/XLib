@@ -2,7 +2,7 @@ package com.danny.xui.chart.bean;
 
 import java.util.List;
 
-public class XLevelChartPopBean {
+public class LevelChartPopBean {
     private List<String> titles;
     private List<String> values;
 

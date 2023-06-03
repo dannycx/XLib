@@ -1,49 +1,30 @@
 package com.danny.xui.dialog;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.TextView;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import com.x.xui.R;
-
+import com.danny.xui.R;
 
 /**
- * @author danny
- * @date 2018/9/27
- *
- * @description 成功失败提示对话框
+ * Created by danny on 2018/11/6.
+ * 结果对话框
  */
+public class ResultDialog extends DialogFragment {
 
-public class ResultDialog extends Dialog {
-    private String result;
-    private int drawable;
+    public static ResultDialog newInstance() {
+        ResultDialog dialog = new ResultDialog();
 
-    public ResultDialog(Context context, String result, int drawable) {
-        super(context);
-        this.result = result;
-        this.drawable = drawable;
+        return dialog;
     }
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_result);
-
-        Window window = getWindow();
-        WindowManager.LayoutParams params = window.getAttributes();
-        params.gravity = Gravity.CENTER;
-        window.setAttributes(params);
-
-        ImageView icon = findViewById(R.id.dialog_result_icon);
-        icon.setImageResource(drawable);
-
-        TextView tip = findViewById(R.id.dialog_result_tip);
-        tip.setText(result);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.dialog_result_layout, container, false);
+        return view;
     }
-
 }

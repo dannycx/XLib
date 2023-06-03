@@ -11,8 +11,7 @@ import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.x.xtools.XThemeUtil;
-import com.x.xtools.XUiUtil;
+import com.danny.xtool.UiTool;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,7 +45,7 @@ public class GestureDrawLine extends View {
 
     public GestureDrawLine(Context context, boolean isVerify, String pwd, List<GesturePoint> pointList, Callback callback) {
         super(context);
-        screenDisplay = XUiUtil.getScreenDisplay(context);
+        screenDisplay = UiTool.INSTANCE.screenDisplay(context);
         this.context = context;
         this.callback = callback;
         paint = new Paint(Paint.DITHER_FLAG);

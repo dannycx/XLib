@@ -16,6 +16,7 @@ import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.AnimationDrawable
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Process
 import android.os.SystemClock
@@ -143,6 +144,12 @@ object UiTool {
         context.resources.getDimensionPixelSize(resId)
 
     /**
+     * 获取dimen资源
+     */
+    fun dimensionPixelSize(context: Context, resName: String) =
+        context.resources.getDimensionPixelSize(dimenId(context, resName))
+
+    /**
      * px -> dp
      */
     fun px2dp(context: Context, px: Int): Float {
@@ -242,7 +249,7 @@ object UiTool {
         try {
             ContextCompat.getDrawable(context, resId)
         } catch (e: NotFoundException) {
-            android.R.drawable.ic_menu_edit
+            ContextCompat.getDrawable(context, android.R.drawable.ic_menu_edit)
         }
 
     /**

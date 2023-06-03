@@ -1,6 +1,6 @@
 package com.danny.xui.chart.bean;
 
-public class XLevelChartInfo {
+public class LevelChartInfo {
     private int xCount = 5;// x轴间隙个数
     private String unit;// 单位
     private String popRes;// 气泡背景

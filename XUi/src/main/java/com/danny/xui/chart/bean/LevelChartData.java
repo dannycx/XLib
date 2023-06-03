@@ -2,7 +2,7 @@ package com.danny.xui.chart.bean;
 
 import java.util.List;
 
-public class XLevelChartData {
+public class LevelChartData {
     private List<String> xLabel;
     private long startData;
     private long segment;

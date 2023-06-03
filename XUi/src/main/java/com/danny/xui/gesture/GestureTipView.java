@@ -9,7 +9,8 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.x.xui.R;
+import com.danny.xtool.UiTool;
+import com.danny.xui.R;
 
 /**
  * @author danny
@@ -43,8 +44,8 @@ public class GestureTipView extends View {
         paint.setStrokeWidth(strokeWidth);
         paint.setStyle(Paint.Style.STROKE);
 
-        normal = getResources().getDrawable(R.drawable.icon_gesture_tip_normal);
-        pressed = getResources().getDrawable(R.drawable.icon_gesture_tip_pressed);
+        normal = UiTool.INSTANCE.getDrawable(context, R.drawable.icon_gesture_normal);
+        pressed = UiTool.INSTANCE.getDrawable(context, R.drawable.icon_gesture_pressed);
         if (pressed != null) {
             width = pressed.getIntrinsicWidth() + 8;
             height = pressed.getIntrinsicHeight() + 8;

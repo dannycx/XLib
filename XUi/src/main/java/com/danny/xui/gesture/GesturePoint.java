@@ -2,8 +2,7 @@ package com.danny.xui.gesture;
 
 import android.widget.ImageView;
 
-import com.x.xui.R;
-
+import com.danny.xui.R;
 
 /**
  * 手势密码点的bean
@@ -102,13 +101,13 @@ public class GesturePoint {
         this.pointState = pointState;
         switch (pointState) {
             case STATE_NORMAL:
-                view.setBackgroundResource(R.drawable.state_normal);
+                view.setBackgroundResource(R.mipmap.state_normal);
                 break;
             case STATE_SELECTED:
-                view.setBackgroundResource(R.drawable.state_selected);
+                view.setBackgroundResource(R.mipmap.state_selected);
                 break;
             case STATE_ERROR:
-                view.setBackgroundResource(R.drawable.state_error);
+                view.setBackgroundResource(R.mipmap.state_error);
                 break;
             default:
                 break;

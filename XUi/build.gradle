@@ -5,7 +5,10 @@ plugins {
 
 def resDirs = [
         'dialog',
-        'bottombar'
+        'bottombar',
+        'gesture',
+        'image',
+        'checkdialog'
 ]
 
 android {
@@ -57,4 +60,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation project(':XTool')
+    implementation project(':XCommon')
 }

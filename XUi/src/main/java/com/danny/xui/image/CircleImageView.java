@@ -29,8 +29,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatImageView;
 
-import com.x.xui.R;
-
+import com.danny.xui.R;
 
 /**
  * 圆形图片
