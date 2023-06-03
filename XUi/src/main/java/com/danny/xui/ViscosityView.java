@@ -6,11 +6,10 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * @description 粘性控件,类似QQ新消息小红点
+ * 粘性控件,类似QQ新消息小红点
  * @author danny
- * @date 2018/11/18.
+ * @since 2018-11-18.
  */
-
 public class ViscosityView extends View {
     public ViscosityView(Context context) {
         super(context);
@@ -28,12 +27,10 @@ public class ViscosityView extends View {
     }
 
     private void init() {
-
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
     }
 }

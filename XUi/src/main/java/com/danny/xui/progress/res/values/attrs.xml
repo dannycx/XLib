@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircleProgress">
+        <attr name="roundColor" format="color"/>
+        <attr name="roundProgressColor" format="color"/>
+        <attr name="roundWidth" format="dimension"/>
+        <attr name="textColor" format="color"/>
+        <attr name="textSize" format="dimension"/>
+        <attr name="max" format="integer"/>
+        <attr name="textIsDisplayable" format="boolean"/>
+
+        <attr name="style">
+            <enum name="STROKE" value="0"/>
+            <enum name="FILL" value="1"/>
+        </attr>
+
+        <attr name="strokeCap">
+            <enum name="BUTT" value="0"/>
+            <enum name="ROUND" value="1"/>
+            <enum name="SQUARE" value="2"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CircleProgressBar">
+        <!--内环宽-->
+        <attr name="smallCircle" format="dimension"/>
+        <!--进度条大小-->
+        <attr name="progressSize" format="dimension"/>
+        <!--内环颜色-->
+        <attr name="smallCircleColor" format="color"/>
+        <!--进度条颜色-->
+        <attr name="progressBarColor" format="color"/>
+        <!--小球颜色-->
+        <attr name="circleColor" format="color"/>
+        <!--小球半径-->
+        <attr name="circleRadius" format="dimension"/>
+    </declare-styleable>
+
+    <!-- 环形进度条 -->
+    <declare-styleable name="RingProgress">
+        <!--上层画笔的粗细-->
+        <attr name="upPaintWidth" format="dimension"/>
+        <!--下层画笔的粗细-->
+        <attr name="downPaintWidth" format="dimension"/>
+        <!--上层画笔的颜色-->
+        <attr name="upPaintColor" format="color"/>
+        <!--下层画笔的颜色-->
+        <attr name="downPaintColor" format="color"/>
+        <!--内边距-->
+        <attr name="circlePadding" format="dimension"/>
+        <!--开始角度-->
+        <attr name="startAngle" format="integer"/>
+        <!--最大值-->
+        <attr name="maxValue" format="integer"/>
+        <!--进度-->
+        <attr name="progressValue" format="integer"/>
+        <!--小圆点颜色，不写默认是上层画笔宽度的一半-->
+        <attr name="pointColor" format="color"/>
+        <!--小圆点宽度-->
+        <attr name="pointWidth" format="dimension"/>
+        <!--是否反转-->
+        <attr name="isInverse" format="boolean"/>
+    </declare-styleable>
+</resources>

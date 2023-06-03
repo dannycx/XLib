@@ -15,18 +15,13 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
-
-import com.x.xui.R;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * 自定义view-折线图
  * Created by danny on 2018/8/23.
  */
-
 public class LineChartView extends View {
     private static final String TAG = LineChartView.class.getSimpleName();
     private static int[] DEFAULT_GRADIENT_COLORS = {Color.BLUE, Color.GREEN};

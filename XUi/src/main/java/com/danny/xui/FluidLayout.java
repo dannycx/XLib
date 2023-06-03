@@ -9,15 +9,13 @@ import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.x.xui.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @description 流式布局,添加子view,作为筛选条件
+ * 流式布局,添加子view,作为筛选条件
  * @author danny
- * @date 2018/11/6.
+ * @since 2018-11-6.
  */
 public class FluidLayout extends ViewGroup {
     @ViewDebug.ExportedProperty(category = "measurement", flagMapping = {

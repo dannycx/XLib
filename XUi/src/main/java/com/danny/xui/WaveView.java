@@ -16,15 +16,11 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
-import com.x.xui.R;
-
-import static com.x.xtools.ImageHelper.getCircleBitmap;
-
+import com.danny.xtool.BitmapTool;
 
 /**
  * 水波纹
  */
-
 public class WaveView extends View {
     private Paint paint;
     private Path path;
@@ -74,7 +70,7 @@ public class WaveView extends View {
         options.inSampleSize = 1;// 缩放图片
         if (bitmapId > 0) {
             bitmap = BitmapFactory.decodeResource(getResources(), bitmapId, options);
-            bitmap = getCircleBitmap(bitmap);
+            bitmap = BitmapTool.INSTANCE.createCircleBitmap(bitmap);
         } else {
 //            bitmap = BitmapFactory.decodeResource(getResources(), , options);// 默认图片
         }

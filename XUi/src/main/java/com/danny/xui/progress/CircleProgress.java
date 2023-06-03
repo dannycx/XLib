@@ -11,13 +11,12 @@ import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.x.xui.R;
-
+import com.danny.xui.R;
 
 /**
- * @description 倒计时进度条
+ * 倒计时进度条
  * @author danny
- * @date 2017/11/20.
+ * @since 2017-11-20.
  */
 public class CircleProgress extends View {
     /** 画笔对象的引用 */
@@ -63,8 +62,7 @@ public class CircleProgress extends View {
         paint = new Paint();
 
         oval = new RectF(0, 0, 0, 0);
-        TypedArray mTypedArray = context.obtainStyledAttributes(attrs,
-                R.styleable.CircleProgress);
+        TypedArray mTypedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleProgress);
 
         //获取自定义属性和默认值
         roundColor = mTypedArray.getColor(R.styleable.CircleProgress_roundColor, Color.RED);

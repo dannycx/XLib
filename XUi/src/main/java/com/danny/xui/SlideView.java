@@ -11,7 +11,6 @@ import android.widget.Scroller;
  * 侧滑面板
  * Created by danny on 2018/5/6.
  */
-
 public class SlideView extends ViewGroup {
     private static final int OPEN = 0;
     private static final int CLOSE = 1;

@@ -19,7 +19,6 @@ import java.util.List;
  * 自定义view-柱状图
  * Created by danny on 2018/8/22.
  */
-
 public class RectChatView extends View {
     private static final String TAG = RectChatView.class.getSimpleName();
     private static final int DELAY = 10;

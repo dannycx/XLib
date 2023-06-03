@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 流式布局 -->
+    <declare-styleable name="FluidLayout">
+        <attr name="LayoutParams1">
+            <flag name="TOP" value="0x30"/>
+            <flag name="BOTTOM" value="0x50"/>
+            <flag name="CENTER" value="0x11"/>
+        </attr>
+
+    </declare-styleable>
+    <declare-styleable name="FluidLayout_LayoutParams">
+        <attr name="LayoutParams2">
+            <flag name="TOP" value="0x30"/>
+            <flag name="BOTTOM" value="0x50"/>
+            <flag name="CENTER" value="0x11"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="WaveView">
+        <!-- 波长 -->
+        <attr name="wave_length" format="dimension"/>
+        <!-- 波高 -->
+        <attr name="wave_height" format="dimension"/>
+        <!-- 是否上升 -->
+        <attr name="rise" format="boolean"/>
+        <!-- 小船图片 -->
+        <attr name="boat_bitmap" format="reference"/>
+        <!-- 水位起始位置 -->
+        <attr name="originY" format="dimension"/>
+        <!-- 快慢 -->
+        <attr name="duration" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="GenerateEditText">
+        <attr name="clearDrawable" format="reference"/>
+    </declare-styleable>
+
+    <!-- 折线图view -->
+    <declare-styleable name="LineChartView">
+        <attr name="line_color" format="color|reference"/>
+        <attr name="dot_normal_color" format="color|reference"/>
+        <attr name="dot_selected_color" format="color|reference"/>
+    </declare-styleable>
+</resources>

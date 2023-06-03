@@ -7,14 +7,12 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.x.xui.R;
-
 /**
- * @description 年月日选择器
+ * 年月日选择器
+ *
  * @author danny
- * @date 2018/10/29.
+ * @since 2018-10-29.
  */
-
 public class YMDView extends FrameLayout implements RadioGroup.OnCheckedChangeListener {
     private static final int YEAR = 0;
     private static final int MONTH = 1;
@@ -71,19 +69,19 @@ public class YMDView extends FrameLayout implements RadioGroup.OnCheckedChangeLi
     public void setBg(int tag) {
         switch (tag) {
             case YEAR:
-                year.setBackground(getContext().getDrawable(R.drawable.shape_ymd_bg_select));
+                year.setBackground(getContext().getDrawable(R.drawable.shape_ymd));
                 month.setBackground(null);
                 day.setBackground(null);
                 break;
             case MONTH:
                 year.setBackground(null);
-                month.setBackground(getContext().getDrawable(R.drawable.shape_ymd_bg_select));
+                month.setBackground(getContext().getDrawable(R.drawable.shape_ymd));
                 day.setBackground(null);
                 break;
             case DAY:
                 year.setBackground(null);
                 month.setBackground(null);
-                day.setBackground(getContext().getDrawable(R.drawable.shape_ymd_bg_select));
+                day.setBackground(getContext().getDrawable(R.drawable.shape_ymd));
                 break;
             default:break;
         }

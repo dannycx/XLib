@@ -1,12 +1,12 @@
-package com.x.xui.widget.title
+package com.danny.xui.title
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import com.danny.widget.title.info.XTitleInfo
-import com.x.xtools.XUiUtil
-import com.x.xui.databinding.XTitleViewBinding
+import com.danny.xtool.UiTool
+import com.danny.xui.databinding.TitleViewBinding
+import com.danny.xui.title.info.XTitleInfo
 
 /**
  * 应用标题组件
@@ -14,16 +14,16 @@ import com.x.xui.databinding.XTitleViewBinding
  * create by danny
  */
 class TitleView(context: Context, attrs: AttributeSet? = null, def: Int = 0): FrameLayout(context, attrs, def) {
-    private val xTitleBinding: XTitleViewBinding = XTitleViewBinding.inflate(LayoutInflater.from(context))
+    private val xTitleBinding: TitleViewBinding = TitleViewBinding.inflate(LayoutInflater.from(context))
 
     fun initView(info: XTitleInfo?) {
         val backRes = info?.backIconRes?: ""
         val titleRes = info?.titleRes?: "app_name"
         val menuRes = info?.menuRes?: ""
-        xTitleBinding.xTitleBack.setImageResource(XUiUtil.getMipmapDrawableColorId(context, backRes))
-        xTitleBinding.xTitleTv.text = XUiUtil.getString(context, XUiUtil.getStringId(context, titleRes))
+        xTitleBinding.xTitleBack.setImageResource(UiTool.backgroundId(context, backRes))
+        xTitleBinding.xTitleTv.text = UiTool.getString(context, UiTool.stringId(context, titleRes))
         if (menuRes.isNotBlank())
-            xTitleBinding.xTitleMenu.setImageResource(XUiUtil.getMipmapDrawableColorId(context, menuRes))
+            xTitleBinding.xTitleMenu.setImageResource(UiTool.backgroundId(context, menuRes))
     }
 
     fun backClick(clickListener: OnClickListener) = xTitleBinding.xTitleBack.setOnClickListener(clickListener)

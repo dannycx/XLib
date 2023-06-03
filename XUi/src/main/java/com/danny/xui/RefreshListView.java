@@ -13,16 +13,12 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.x.xui.R;
-
 import java.text.SimpleDateFormat;
-
 
 /**
  * 刷新 侧滑
  * Created by danny on 2018/5/6.
  */
-
 public class RefreshListView extends ListView implements AbsListView.OnScrollListener {
     private static final int PULL_REFRESH = 0;
     private static final int RELEASE_REFRESH = 1;

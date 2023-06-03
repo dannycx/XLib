@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.x.xui.R;
+import com.danny.xui.R;
 
 public class ItemClickView extends FrameLayout {
     private TextView mTitle;

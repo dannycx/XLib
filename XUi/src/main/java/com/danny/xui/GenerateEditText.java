@@ -1,5 +1,6 @@
 package com.danny.xui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -14,16 +15,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.x.xui.R;
-
 import java.lang.reflect.Field;
-
 
 /**
  * 左侧带扫码右侧带删除按钮的EditText
  * Created by 75955 on 2018/8/15.
  */
-
 public class GenerateEditText extends AppCompatEditText implements View.OnFocusChangeListener, TextWatcher {
     private Drawable clearDrawable;// 右侧删除图标
     private boolean hasFocus;// 是否有焦点
@@ -50,7 +47,7 @@ public class GenerateEditText extends AppCompatEditText implements View.OnFocusC
         int drawable = array.getResourceId(R.styleable.GenerateEditText_clearDrawable, 0);
         if (drawable != 0){
             try {
-                Field field = TextView.class.getDeclaredField("mCursorDrawableRes");
+                @SuppressLint("SoonBlockedPrivateApi") Field field = TextView.class.getDeclaredField("mCursorDrawableRes");
                 field.setAccessible(true);
                 field.set(this, drawable);
             } catch (Exception e) {

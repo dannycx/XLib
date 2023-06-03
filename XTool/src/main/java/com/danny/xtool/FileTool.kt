@@ -4,9 +4,12 @@
 
 package com.danny.xtool
 
+import android.net.Uri
 import android.os.Environment
 import android.util.Log
+import androidx.core.net.toFile
 import java.io.File
+import java.io.FileInputStream
 import java.io.IOException
 
 /**

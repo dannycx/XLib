@@ -8,9 +8,6 @@ import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.x.xui.R;
-
-
 public class ItemSelectView extends RelativeLayout {
 	private static final String NAMESPACE = "http://schemas.android.com/apk/res/danny.com.tools";
 	private static final String tag = "SettingItemView";

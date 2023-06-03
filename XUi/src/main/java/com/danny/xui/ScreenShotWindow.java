@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -16,8 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.x.xtools.XUiUtil;
-import com.x.xui.R;
+import com.danny.xtool.UiTool;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -26,7 +24,6 @@ import java.lang.ref.WeakReference;
  * Created by 75955 on 2019/3/22.
  * 截图界面
  */
-
 public class ScreenShotWindow extends AppCompatActivity implements View.OnClickListener {
     public static final String IMAGE_PATH = "image_path";
     private static final long DELAY_FINISH = 7000;
@@ -73,8 +70,8 @@ public class ScreenShotWindow extends AppCompatActivity implements View.OnClickL
 
     private void initWindow() {
         WindowManager.LayoutParams lp = getWindow().getAttributes();
-        lp.height = XUiUtil.dp2px(this, 204);
-        lp.width = XUiUtil.dp2px(this, 118);
+        lp.height = UiTool.INSTANCE.dp2px(this, 204);
+        lp.width = UiTool.INSTANCE.dp2px(this, 118);
         lp.gravity = Gravity.CENTER_VERTICAL | Gravity.END;
         lp.dimAmount = 0f;
         getWindow().setAttributes(lp);

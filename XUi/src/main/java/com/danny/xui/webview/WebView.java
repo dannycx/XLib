@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 
 import com.danny.xtool.UiTool;
 
-
 /**
  * 自定义WebView
  */

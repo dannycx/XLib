@@ -5,6 +5,9 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 
+import com.danny.xtool.UiTool;
+import com.danny.xui.radar.bean.RadarBean;
+import com.danny.xui.radar.bean.XRadarDataSet;
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
@@ -14,9 +17,6 @@ import com.github.mikephil.charting.data.RadarEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IRadarDataSet;
 import com.github.mikephil.charting.utils.Utils;
-import com.x.xtools.XArrayUtil;
-import com.x.xui.widget.radar.bean.RadarBean;
-import com.x.xui.widget.radar.bean.XRadarDataSet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,15 +119,15 @@ public class RadarChartView extends RadarChart {
                             }
                         }
                         boolean isDrawDash = false;
-                        if (!XArrayUtil.isEmpty(bean.getDashLine())) {
+                        if (!UiTool.INSTANCE.isEmpty(bean.getDashLine())) {
                             isDrawDash = bean.getDashLine().get(i);
                         }
                         boolean isDrawCircle = false;
-                        if (!XArrayUtil.isEmpty(bean.getCircleDraw())) {
+                        if (!UiTool.INSTANCE.isEmpty(bean.getCircleDraw())) {
                             isDrawCircle = bean.getCircleDraw().get(i);
                         }
                         boolean isDrawFill = true;
-                        if (!XArrayUtil.isEmpty(bean.getFillDraw())) {
+                        if (!UiTool.INSTANCE.isEmpty(bean.getFillDraw())) {
                             isDrawFill = bean.getFillDraw().get(i);
                         }
                         XRadarDataSet set = generateDataSet(brand, yDatas, isDrawDash, isDrawCircle, isDrawFill);

@@ -27,7 +27,7 @@ class LocationReceiver {
             null == callback -> false
             (ActivityCompat.checkSelfPermission(cnt, Manifest.permission.ACCESS_FINE_LOCATION) != 0 &&
             ActivityCompat.checkSelfPermission(cnt, Manifest.permission.ACCESS_COARSE_LOCATION) != 0) -> false
-            !LocationUtil.isLocationEnable(cnt) -> false
+            !LocationUtil2.isLocationEnable(cnt) -> false
             else -> {
                 locationManager = cnt.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 //                locationManager.addNmeaListener(locationListener)

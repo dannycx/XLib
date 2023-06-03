@@ -10,13 +10,13 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.x.xui.R;
-
+import com.danny.xui.R;
 
 /**
- * @description 带小球的圆形进度
+ * 带小球的圆形进度
+ *
  * @author danny
- * @date 2017/09/03
+ * @since 2017-09-03
  */
 public class CircleProgressBar extends View implements ValueAnimator.AnimatorUpdateListener{
     private int mWidth;//宽

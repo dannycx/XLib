@@ -13,15 +13,14 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.x.xui.R;
-
+import com.danny.xui.R;
 
 /**
- * @description 结尾带圆点的环形进度条,结合圆形图像使用
+ * 结尾带圆点的环形进度条,结合圆形图像使用
+ *
  * @author danny
- * @date 2018/10/25
+ * @since  2018-10-25
  */
-
 public class RingProgress extends View {
     private int height, width;
     private Paint paint;

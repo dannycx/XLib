@@ -13,7 +13,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.x.xui.R;
+import com.danny.xui.R;
 
 import java.math.BigDecimal;
 

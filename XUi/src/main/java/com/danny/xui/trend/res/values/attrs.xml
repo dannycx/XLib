@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FunnelView">
+        <attr name="lastLineOffset" format="dimension"/>
+        <attr name="itemHeight" format="dimension"/>
+        <attr name="labelColor" format="color"/>
+        <attr name="labelSize" format="dimension"/>
+        <attr name="titleColor" format="color"/>
+        <attr name="titleSize" format="dimension"/>
+        <attr name="shadowColor" format="color"/>
+    </declare-styleable>
+</resources>

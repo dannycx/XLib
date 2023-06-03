@@ -11,8 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-
-import com.x.xtools.Constants;
+import com.danny.common.Constants;
 
 import java.util.List;
 

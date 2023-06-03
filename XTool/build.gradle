@@ -47,5 +47,5 @@ dependencies {
 
 
     implementation project(':XCommon')
-    implementation project(':XBase')
+//    implementation project(':XBase')
 }

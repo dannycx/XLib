@@ -8,8 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.x.xtools.XArrayUtil;
-import com.x.xui.R;
+import com.danny.xtool.UiTool;
 
 import java.util.HashSet;
 import java.util.List;
@@ -51,13 +50,11 @@ public class SingleSelectLayout extends LinearLayout implements View.OnClickList
 
     public void setSelectList(List<String> list) {
         HashSet<String> set = new HashSet<>();
-        if (!XArrayUtil.isEmpty(list)) {
-
+        if (!UiTool.INSTANCE.isEmpty(list)) {
         }
     }
 
     public void setSelectList(HashSet<String> set) {
-
     }
 
     public void createText() {
@@ -69,6 +66,5 @@ public class SingleSelectLayout extends LinearLayout implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-
     }
 }
