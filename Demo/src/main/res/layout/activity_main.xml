@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.danny.xui.ItemSelectView
+        android:id="@+id/item_select"
+        xmlns:safe="http://schemas.android.com/apk/res/danny.com.tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        safe:title="是否开启"
+        safe:on="开启"
+        safe:off="关闭"/>
+
+    <com.danny.xui.itemclick.ItemClickView
+        android:id="@+id/item_click"
+        android:layout_below="@id/item_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
