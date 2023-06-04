@@ -1,0 +1,40 @@
+{
+  "eat": [
+    {
+      "value": "夹心",
+      "code": "",
+      "isChecked": true,
+      "extra": ""
+    },
+    {
+      "value": "水果",
+      "code": "",
+      "isChecked": false,
+      "extra": ""
+    },
+    {
+      "value": "巧克力",
+      "code": "",
+      "isChecked": false,
+      "extra": ""
+    },
+    {
+      "value": "",
+      "code": "",
+      "isChecked": false,
+      "extra": ""
+    },
+    {
+      "value": "",
+      "code": "",
+      "isChecked": false,
+      "extra": ""
+    },
+    {
+      "value": "",
+      "code": "",
+      "isChecked": false,
+      "extra": ""
+    }
+  ]
+}

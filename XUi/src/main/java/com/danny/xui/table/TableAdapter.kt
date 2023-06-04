@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.danny.xtool.UiTool
 import com.danny.xui.databinding.ItemTableBinding
-import com.danny.xui.table.bean.XTableBean
+import com.danny.xui.table.bean.TableBean
 
 /**
  * 表格adapter
  */
 class TableAdapter: RecyclerView.Adapter<TableAdapter.Holder> () {
-    private var item: ArrayList<XTableBean>? = null
+    private var item: ArrayList<TableBean>? = null
     private var spanCount = 5
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -28,7 +28,7 @@ class TableAdapter: RecyclerView.Adapter<TableAdapter.Holder> () {
         }
     }
 
-    fun setItem(item: ArrayList<XTableBean>, spanCount: Int) {
+    fun setItem(item: ArrayList<TableBean>, spanCount: Int) {
         this.item = item
         this.spanCount = spanCount
         notifyDataSetChanged()
@@ -36,7 +36,7 @@ class TableAdapter: RecyclerView.Adapter<TableAdapter.Holder> () {
 
     inner class Holder(private val binding: ItemTableBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun setData(bean: XTableBean, position: Int) {
+        fun setData(bean: TableBean, position: Int) {
             binding.tableKey.text = bean.key
             binding.tableValue.text = bean.value
             val lastCol = ((position + 1) % spanCount == 0)

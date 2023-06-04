@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/file"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_48"
+            android:text="文档"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <Button
+            android:id="@+id/take_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="拍照"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/file"/>
+
+        <Button
+            android:id="@+id/funnel_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="漏斗"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/file"/>
+
+        <Button
+            android:id="@+id/share_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分享"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/funnel_view"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

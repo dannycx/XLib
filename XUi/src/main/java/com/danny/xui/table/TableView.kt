@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.danny.xui.databinding.TableRecyclerBinding
-import com.danny.xui.table.bean.XTableBean
+import com.danny.xui.table.bean.TableBean
 
 /**
  * RecyclerView流式布局实现表格
  */
-class XTableView(var cnt: Context, attrSet: AttributeSet? = null): FrameLayout(cnt, attrSet) {
+class TableView(var cnt: Context, attrSet: AttributeSet? = null): FrameLayout(cnt, attrSet) {
     private var binding = TableRecyclerBinding.inflate(LayoutInflater.from(cnt), this, false)
     private var spanCont = 5
     private val adapter by lazy { TableAdapter() }
@@ -34,7 +34,7 @@ class XTableView(var cnt: Context, attrSet: AttributeSet? = null): FrameLayout(c
 //        addView(rv)
     }
 
-    fun setData(item: ArrayList<XTableBean>) {
+    fun setData(item: ArrayList<TableBean>) {
         adapter.setItem(item, spanCont)
     }
 }

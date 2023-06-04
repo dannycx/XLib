@@ -3,13 +3,25 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!--    <uses-permission android:name="com.danny.xshare.permission.share"/>-->
 
 
     <application
-        android:theme="@style/AppTheme"
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         android:supportsRtl="true"
         android:icon="@mipmap/ic_launcher"
         android:allowBackup="true">
+
+        <activity android:name=".home.main.CMainActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
+        <activity android:name=".home.LoveActivity"/>
+
+        <activity android:name=".home.demo.FunnelActivity"/>
+        <activity android:name=".home.demo.ShareActivity"/>
 
         <activity android:name=".ui.HuoJianActivity"/>
 
@@ -20,5 +32,24 @@
         <activity android:name=".ui.BackgroundActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
+        <activity android:name=".filepicker.view.FilePickerActivity"/>
+
+        <meta-data android:name="X.com.danny.demo.filepicker.listener.IFilePicker"
+            android:value="com.danny.demo.filepicker.FilePicker"/>
+
+        <activity android:name=".filepicker.view.OpenImageActivity"/>
+
+        <meta-data android:name="X.com.x.xbase.module.IXEventBus"
+            android:value="com.x.xbase.event.XEventBusImpl"/>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.danny.demo.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths"/>
+        </provider>
     </application>
 </manifest>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/dp_10"
+        android:layout_marginStart="@dimen/dp_12"
+        android:layout_marginEnd="@dimen/dp_12">
+
+        <TextView
+            android:id="@+id/daughter_cake"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_27"
+            android:text="cake"
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/color_222222"
+            android:background="@drawable/shape_check_item"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingEnd="@dimen/dp_16"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/daughter_snacks"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_27"
+            android:text="snacks"
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/color_222222"
+            android:background="@drawable/shape_check_item"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingEnd="@dimen/dp_16"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/dp_10"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/daughter_cake"/>
+
+        <TextView
+            android:id="@+id/daughter_porridge"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_27"
+            android:text="porridge"
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/color_222222"
+            android:background="@drawable/shape_check_item"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingEnd="@dimen/dp_16"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/dp_10"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/daughter_snacks"/>
+
+        <TextView
+            android:id="@+id/daughter_fruit"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_27"
+            android:text="fruit"
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/color_222222"
+            android:background="@drawable/shape_check_item"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingEnd="@dimen/dp_16"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/dp_10"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/daughter_porridge"/>
+
+        <com.danny.xui.table.TableView
+            android:id="@+id/daughter_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            app:layout_constraintTop_toBottomOf="@id/daughter_cake"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

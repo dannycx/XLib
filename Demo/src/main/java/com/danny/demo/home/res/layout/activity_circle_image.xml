@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:padding="16dp"-->
+<!--            android:background="#FFEEEEEE">-->
+
+<!--            <com.x.xui.widget.image.CircleImageView-->
+<!--                android:layout_width="160dp"-->
+<!--                android:layout_height="160dp"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:src="@mipmap/love"-->
+<!--                app:borderWidth="2dp"-->
+<!--                app:borderColor="#FF222222" />-->
+<!--        </RelativeLayout>-->
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:padding="16dp"-->
+<!--            android:background="#FF222222">-->
+
+<!--            <com.x.xui.widget.image.CircleImageView-->
+<!--                android:layout_width="320dp"-->
+<!--                android:layout_height="320dp"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:src="@mipmap/love"-->
+<!--                app:borderWidth="2dp"-->
+<!--                app:borderColor="#FFEEEEEE" />-->
+<!--        </RelativeLayout>-->
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <com.x.xui.widget.TipMsgLayout-->
+<!--            android:id="@+id/tip"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginTop="20dp"/>-->
+
+<!--        <com.x.xui.widget.XMarqueeView-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:text="众里寻他千百度,蓦然回首,那人却在灯火阑珊处..."-->
+<!--            android:ellipsize="marquee"-->
+<!--            android:marqueeRepeatLimit="marquee_forever"-->
+<!--            android:singleLine="true"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginTop="20dp"/>-->
+<!--    </LinearLayout>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/circle_span"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textColor="#ff0"/>-->
+
+<!--    <com.x.xui.widget.radar.RadarChartView-->
+<!--        android:id="@+id/radar"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="270dp"/>-->
+
+    <com.danny.xui.image.CircleImageView
+        android:layout_width="380dp"
+        android:layout_height="380dp"
+        android:src="@mipmap/love"
+        app:borderWidth="2dp"
+        app:borderColor="#FFEEEEEE" />
+</LinearLayout>

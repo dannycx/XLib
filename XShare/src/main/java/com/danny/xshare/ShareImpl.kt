@@ -18,7 +18,7 @@ class ShareImpl(): IShare {
     constructor(context: Context): this()
 
     override fun registerWeChart(context: Context, appId: String) {
-        ShareTool.register(context, "")
+        ShareTool.register(context, appId)
     }
 
     override fun unregisterWeChart(context: Context) {

@@ -1,6 +1,6 @@
 package com.danny.xui.table.bean
 
-data class XTableBean(
+data class TableBean(
     var key: String? = "",
     var value: String? = "",
     var bgRes: String = "white")
