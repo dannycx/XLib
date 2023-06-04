@@ -2,11 +2,11 @@
  * Copyright (c) 2023-2023 x
  */
 
-package com.danny.xtool.share
+package com.danny.xshare
 
 import android.content.Context
 import com.danny.xbase.module.IShare
-import com.danny.xtool.share.util.ShareTool
+import com.danny.xshare.util.ShareTool
 
 /**
  * 分享实现类

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.danny.xshare">
+
+    <permission android:name="${applicationId}.permission.share"
+        android:protectionLevel="signature"/>
+
+    <uses-permission android:name="${applicationId}.permission.share"/>
+    <application>
+        <meta-data android:name="X.com.danny.xbase.module.IShare"
+            android:value="com.danny.xshare.ShareImpl"/>
+    </application>
+</manifest>

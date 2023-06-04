@@ -2,7 +2,7 @@
  * Copyright (c) 2023-2023 x
  */
 
-package com.danny.xtool.share.util
+package com.danny.xshare.util
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -11,9 +11,9 @@ import android.content.IntentFilter
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.widget.Toast
-import com.danny.xtool.share.bean.ShareData
-import com.danny.xtool.share.bean.ShareTarget
-import com.danny.xtool.share.bean.ShareType
+import com.danny.xshare.bean.ShareData
+import com.danny.xshare.bean.ShareTarget
+import com.danny.xshare.bean.ShareType
 import com.tencent.mm.opensdk.constants.ConstantsAPI
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX
 import com.tencent.mm.opensdk.modelmsg.WXImageObject

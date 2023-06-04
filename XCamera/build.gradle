@@ -1,27 +1,10 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
 }
 
-def resDirs = [
-        'dialog',
-        'bottombar',
-        'gesture',
-        'image',
-        'itemclick',
-        'labelgrid',
-        'progress',
-        'title',
-        'trend',
-        'check',
-        'table',
-        'noticeview',
-        'checkdialog'
-]
-
 android {
-    namespace 'com.danny.xui'
+    namespace 'com.danny.xcamera'
     compileSdk 33
 
     defaultConfig {
@@ -45,21 +28,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
     dataBinding {
         enabled = true
-    }
-
-    sourceSets {
-        main {
-            resDirs.forEach {
-                res.srcDirs += 'src/main/java/com/danny/xui/' + it + '/res'
-            }
-        }
     }
 }
 
 dependencies {
+
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
@@ -67,8 +42,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation "com.github.PhilJay:MPAndroidChart:v3.1.0"
-    implementation "com.github.bumptech.glide:glide:4.11.0"
+    implementation 'androidx.camera:camera-core:1.0.0-beta08'
+    implementation 'androidx.camera:camera-camera2:1.0.0-beta08'
+    implementation 'androidx.camera:camera-lifecycle:1.0.0-beta08'
+    implementation 'androidx.camera:camera-view:1.0.0-alpha15'
 
     implementation project(':XTool')
     implementation project(':XCommon')
