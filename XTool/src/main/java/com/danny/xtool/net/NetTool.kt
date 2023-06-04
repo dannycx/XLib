@@ -21,19 +21,19 @@ object NetTool {
      * 获取网络类型:WiFi, 4G, 3G, 2G, UNKNOWN, NO
      */
     @RequiresPermission("android.permission.ACCESS_NETWORK_STATE")
-    fun getNetType(context: Context): XNetType {
-        var netType = XNetType.NETWORK_NO
+    fun getNetType(context: Context): NetType {
+        var netType = NetType.NETWORK_NO
         val info = getNetworkInfo(context)
         info?.apply {
             when (isAvailable) {
                 true -> {
                     when (type) {
-                        ConnectivityManager.TYPE_WIFI -> netType = XNetType.NETWORK_WIFI
+                        ConnectivityManager.TYPE_WIFI -> netType = NetType.NETWORK_WIFI
                         ConnectivityManager.TYPE_MOBILE -> {
                             when (subtype) {
                                 TelephonyManager.NETWORK_TYPE_IWLAN,
                                 TelephonyManager.NETWORK_TYPE_LTE ->
-                                    netType = XNetType.NETWORK_4G
+                                    netType = NetType.NETWORK_4G
 
                                 TelephonyManager.NETWORK_TYPE_HSDPA,
                                 TelephonyManager.NETWORK_TYPE_HSPA,
@@ -45,7 +45,7 @@ object NetTool {
                                 TelephonyManager.NETWORK_TYPE_UMTS,
                                 TelephonyManager.NETWORK_TYPE_EHRPD,
                                 TelephonyManager.NETWORK_TYPE_TD_SCDMA ->
-                                    netType = XNetType.NETWORK_3G
+                                    netType = NetType.NETWORK_3G
 
                                 TelephonyManager.NETWORK_TYPE_EDGE,
                                 TelephonyManager.NETWORK_TYPE_GPRS,
@@ -53,17 +53,17 @@ object NetTool {
                                 TelephonyManager.NETWORK_TYPE_1xRTT,
                                 TelephonyManager.NETWORK_TYPE_IDEN,
                                 TelephonyManager.NETWORK_TYPE_GSM ->
-                                    netType = XNetType.NETWORK_2G
+                                    netType = NetType.NETWORK_2G
 
                                 else -> {
                                     netType = when (subtypeName) {
-                                        "TD-SCDMA", "WCDMA", "CDMA2000" -> XNetType.NETWORK_3G
-                                        else -> XNetType.NETWORK_UNKNOWN
+                                        "TD-SCDMA", "WCDMA", "CDMA2000" -> NetType.NETWORK_3G
+                                        else -> NetType.NETWORK_UNKNOWN
                                     }
                                 }
                             }
                         }
-                        else -> netType = XNetType.NETWORK_UNKNOWN
+                        else -> netType = NetType.NETWORK_UNKNOWN
                     }
                 }
                 else -> {}

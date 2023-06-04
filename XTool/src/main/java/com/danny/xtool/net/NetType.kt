@@ -10,7 +10,7 @@ package com.danny.xtool.net
  * @author x
  * @since 2023-06-02
  */
-enum class XNetType(private var des: String) {
+enum class NetType(private var des: String) {
     NETWORK_WIFI("WiFi"), NETWORK_5G("5G"), NETWORK_4G("4G"), NETWORK_3G("3G")
         , NETWORK_2G("2G"), NETWORK_UNKNOWN("Unknown"), NETWORK_NO("No network");
 

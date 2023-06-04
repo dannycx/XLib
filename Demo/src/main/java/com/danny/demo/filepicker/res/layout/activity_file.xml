@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/x_file_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_ffffff">
+
+        <TextView
+            android:id="@+id/x_file_tile"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_48"
+            android:text="文档"
+            android:textColor="@color/color_222222"
+            android:textSize="@dimen/sp_18"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/x_file_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_48"
+            android:text="文件"
+            android:layout_marginStart="@dimen/dp_12"
+            android:textColor="@color/color_222222"
+            android:textSize="@dimen/sp_20"
+            android:gravity="center"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/x_file_tile"/>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/x_file_tab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:background="@color/color_ffffff"
+            app:tabMode="fixed"
+            app:tabMaxWidth="@dimen/dp_0"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginEnd="@dimen/dp_16"
+            app:layout_constraintTop_toBottomOf="@id/x_file_switch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/x_file_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_56"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/x_file_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已选择："
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/color_222222"
+                android:layout_marginStart="@dimen/dp_12"/>
+
+            <TextView
+                android:id="@+id/x_file_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="( 0M )"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/color_222222"
+                android:layout_marginStart="@dimen/dp_12"/>
+
+            <View
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/x_file_upload"
+                android:layout_width="@dimen/dp_158"
+                android:layout_height="@dimen/dp_36"
+                android:text="上传"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/color_ffffff"
+                android:background="@drawable/shape_btn"
+                android:gravity="center"
+                android:layout_marginEnd="@dimen/dp_12"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/x_file_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0_33"
+            android:background="@color/color_1a000000"
+            app:layout_constraintBottom_toTopOf="@id/x_file_bottom"/>
+
+        <FrameLayout
+            android:id="@+id/x_file_contains"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            android:background="@color/color_fff2f2f8"
+            app:layout_constraintTop_toBottomOf="@id/x_file_tab"
+            app:layout_constraintBottom_toTopOf="@id/x_file_line"/>
+
+        <LinearLayout
+            android:id="@+id/x_file_fun_layout"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginStart="@dimen/dp_16"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:elevation="@dimen/dp_10"
+            android:visibility="gone"
+            android:background="@drawable/shape_file_switch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/x_file_switch">
+
+            <TextView
+                android:id="@+id/x_file_file"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_48"
+                android:text="文件"
+                android:gravity="center"
+                android:textColor="@color/color_3986ff"
+                android:textSize="@dimen/sp_16"/>
+
+            <TextView
+                android:id="@+id/x_file_app"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_48"
+                android:text="常用应用"
+                android:gravity="center"
+                android:textColor="@color/color_222222"
+                android:textSize="@dimen/sp_16"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="x_file_switch_file" translatable="false">文件</string>
+    <string name="x_file_switch_app" translatable="false">常用应用</string>
+
+    <string name="x_file_size" translatable="false">(%s)</string>
+    <string name="x_file_count" translatable="false">已选择: %d</string>
+
+    <string-array name="x_file_switch">
+        <item>文件</item>
+        <item>常用应用</item>
+    </string-array>
+
+    <string-array name="x_file_tab">
+        <item>图片</item>
+        <item>文档</item>
+        <item>压缩包</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="x_app_tab">
+        <item>全部</item>
+        <item>微信</item>
+        <item>QQ</item>
+    </string-array>
+</resources>
