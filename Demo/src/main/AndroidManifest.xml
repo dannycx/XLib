@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.danny.demo">
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+
+    <application
+        android:theme="@style/AppTheme"
+        android:supportsRtl="true"
+        android:icon="@mipmap/ic_launcher"
+        android:allowBackup="true">
+
+        <activity android:name=".ui.HuoJianActivity"/>
+
+        <activity android:name=".ui.MainActivity"/>
+
+        <service android:name=".service.HuojianService"/>
+
+        <activity android:name=".ui.BackgroundActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+
+    </application>
 </manifest>

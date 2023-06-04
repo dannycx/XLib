@@ -13,6 +13,8 @@ def resDirs = [
         'progress',
         'title',
         'trend',
+        'check',
+        'table',
         'checkdialog'
 ]
 
