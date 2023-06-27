@@ -1,7 +1,8 @@
 # 问题记录
 
-## java.lang.UnsatisfiedLinkError: dlopen failed: "/data/app/~~***==/com.xxx-***==/lib/arm64/libc++_shared.so" has bad ELF magic: 00000000
+## java.lang.UnsatisfiedLinkError: dlopen failed: "/data/app/~/com.xxx/lib/arm64/libc++_shared.so" has bad ELF magic: 00000000
 * 接入MyScript OCR识别so库报错
+
 1.build.gradle移除packagingOptions配置
 ```
 android {
