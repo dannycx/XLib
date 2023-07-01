@@ -20,3 +20,6 @@ android {
 ```
 -keep class com.myscript.** {*;}
 ```
+
+## Context.startForegroundService() did not then call Service.startForeground()
+* Android 8.0+系统不允许后台应用创建后台服务。引入startForeground()
