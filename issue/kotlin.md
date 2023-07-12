@@ -7,17 +7,17 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
 }
 android {
     ...
-    androidExtensions {
-        experimental = true
-    }
 }
 ```
 2. kotlin
 ```
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 @Parcelize
 data class Test(
     val id: Int = 1): Parcelable
