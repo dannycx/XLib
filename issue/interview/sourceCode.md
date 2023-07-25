@@ -30,25 +30,25 @@
 * sudo ln -s /usr/bin/python3.10 python 配置软连接
 
    * 软件更新
-  - sudo apt-get update 更新系统软件
-  - sudo apt-get upgrade 更新所有软件
+- sudo apt-get update 更新系统软件
+- sudo apt-get upgrade 更新所有软件
 
    * 下载vim
-  - sudo apt-get install vim
-  * i 编辑
-  * ESC 普通模式
-  * : 命令模式（:wq保存并退出）
-  - source /etc/profile 环境变量立即生效无需重启
+- sudo apt-get install vim
+* i 编辑
+* ESC 普通模式
+* : 命令模式（:wq保存并退出）
+- source /etc/profile 环境变量立即生效无需重启
 
    * 安装jdk
-  - sudo apt-get install openjdk-11-jre-headless
+- sudo apt-get install openjdk-11-jre-headless
 
    * 配置tuna镜像下载源码~/.bashrc
-  - export REPO_URL = 'https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/'
+- export REPO_URL = 'https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/'
 
    * 配置邮箱+名字
-  - git config --global user.email "xxx@xxx.com"
-  - git config --global user.name "xxx"
+- git config --global user.email "xxx@xxx.com"
+- git config --global user.name "xxx"
 
 
 2. 下载源码
