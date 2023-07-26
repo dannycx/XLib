@@ -56,13 +56,13 @@
   - mkdir aosp
   - cd aosp
   - repo init -u https://aosp.tuna.tsinghua.edu.cn/platform/manifest -b android-11.0.0_r1
-  - sync
+  - repo sync
 
 
 3. 下载内核源码
    * mkdir kernel
    * cd kernel
-   * git clone https://aosp.tuna.tsinghua.edu.cn/kernel/goldfish.git
+   * git clone https://aosp.tuna.tsinghua.edu.cn/kernel/goldfish.git   (模拟器)
   - cd goldfish
   - git branch -a
   - git checkout remotes/origin/android-goldfish-3.4
