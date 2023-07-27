@@ -9,8 +9,10 @@
 1. 下载git
 - sudo apt-get install git
 > Error: unable to acquire the dpkg frontend lock(/var/lib/dpkg/lock-frontend)
+  - sudo rm /var/lib/apt/lists/lock
   - sudo rm /var/cache/apt/archives/lock
-- sudo rm /var/lib/dpkg/lock
+  - sudo rm /var/lib/dpkg/lock*
+  - sudo dpkg --configure -a
   
 2. 创建bin，并加入PATH
 - mkdir ~/bin
