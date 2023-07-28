@@ -17,3 +17,6 @@
 
 2.从电脑复制到设备文件夹
 * adb push test.txt /sdcard/test/
+
+## 常用命令
+* adb reboot 重启
