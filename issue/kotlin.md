@@ -15,10 +15,13 @@ android {
 ```
 2. kotlin
 ```
+import kotlinx.android.parcel.IgnoredOnParcel
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Test(
-    val id: Int = 1): Parcelable
+data class Test(val id: Int = 1): Parcelable {
+    // 不序列化字段
+    @IgnoredOnParcel var itemList: ArrayList<Xxx>? = null
+}
 ```
