@@ -21,3 +21,18 @@ image.setImageDrawable(stroke)
 2. tint设置
 image.setImageResource(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.color_tint)))
 ```
+
+## Path是否有交集
+```
+public boolean checkInterEraser(Path path1, Path path2) {
+    Region clip = new Region(0, 0, Util.INSTANCE.getWindowWH()[0], Util.INSTANCE.getWindowWH()[1]);
+    Region eRegion = new Region();
+    eRegion.setPath(path1, clip);
+    Region sRegion = new Region();
+    sRegion.setPath(path, clip);
+    if (!eRegion.quickReject(sRegion) && eRegion.op(sRegion, Region.Op.INTERSECT)) {
+        return true;
+    }
+    return false;
+}
+```
