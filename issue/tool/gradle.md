@@ -8,7 +8,21 @@ plugins {
     ...
 }
 
+def keystoreProps = new Properties()
+keystoreProps.load(new FileInputStream(rootProject.file("keystore.properties")))
+
 android {
+    defaultConfig {
+        applicationId "com.danny.xxx"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0.0.1"
+        vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
     buildTypes {
         release {
             minifyEnabled true // 混淆
@@ -19,6 +33,38 @@ android {
 
     dataBinding { // 使用dataBinding
         enabled = true
+    }
+
+    applicationVariants.all{
+        variant ->
+            variant.outputs.all{
+                outputFileName = "App-${variant.flavorName}-${variant.buildType.name}-${defaultConfig.versionName}.apk"
+            }
+    }
+
+    signingConfigs {
+        beta {
+            storeFile file(keystoreProps['storeFile'])
+            storePassword keystoreProps['storePassword']
+            keyAlias keystoreProps['betaKeyAlias']
+            keyPassword keystoreProps['betaKeyPassword']
+        }
+    }
+
+flavorDimensions "model", "chipset"
+    productFlavors {
+        xvn {
+            dimension "model"
+            versionNameSuffix ".xvn"
+        }
+        oem {
+            dimension "model"
+            versionNameSuffix ".oem"
+        }
+        beta {
+            dimension "chipset"
+            signingConfig signingConfigs.beta
+        }
     }
 }
 
