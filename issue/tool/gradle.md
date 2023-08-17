@@ -51,7 +51,7 @@ android {
         }
     }
 
-flavorDimensions "model", "chipset"
+    flavorDimensions "model", "chipset"
     productFlavors {
         xvn {
             dimension "model"
