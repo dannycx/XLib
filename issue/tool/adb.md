@@ -4,6 +4,9 @@
 * adb shell pm dump com.xxx.xxx | grep "version"
 * adb shell pm dump com.xxx.xxx | findstr version
 
+## 查看触摸事件
+* getevent -l -t | grep "BTN"
+
 ## 卸载app
 * adb shell pm uninstall --user 0 com.xxx.xxx
 
