@@ -1,5 +1,20 @@
 # gradle问题
 
+## gradle signingReport生成SHA1
+* 须保持gradle plugin 与 gradle版本对应，否则失败
+* （4.2.2--7.2）
+```
+> Task :app:signingReport
+Variant: debug
+Config: debug
+Store: C:\Users\xxx\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: F5:8F:8A:FA:B8:68:...
+SHA1: B8:23:35:14:...
+SHA-256: C2:6D:2B:F0:F1:95:0B:...
+Valid until: 2053年8月10日星期日
+```
+
 ## build.gradle(:app) 属性介绍
 ```
 plugins {
