@@ -73,6 +73,9 @@ dependencies { // 依赖
 }
 ```
 
+## Algorithm HmacPBESHA256 not available
+* 修改jdk版本至16及以上
+
 ## java.lang.ClassNotFoundException: Didn't find class "androidx.databinding.DataBinderMapperImpl"
 * 依赖lib使用dataBinding，主module未使用，修改如下：
 ```
