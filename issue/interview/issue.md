@@ -1,5 +1,77 @@
 # 问题记录
 
+## For security reasons, WebView is not allowed in privileged processes
+* 当应用app申请系统应用，AndroidManifest.xml添加如下配置
+```
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xxx.xxx"
+    android:sharedUserId="android.uid.system">
+    ...
+</manifest>
+```
+
+* 解决方法：加载webView前做如下处理
+```
+Android 8.0安全机制，通过Hook异常前赋值sProviderInstance解决
+
+public static void hookWebView() {
+    int sdkInt = Build.VERSION.SDK_INT;
+    try {
+        Class<?> factoryClass = Class.forName("android.webkit.WebViewFactory");
+        Field field = factoryClass.getDeclaredField("sProviderInstance");
+        field.setAccessible(true);
+        Object sProviderInstance = field.get(null);
+        if (sProviderInstance != null) {
+            Log.i("WebView", "sProviderInstance isn't null");
+           return;
+        }
+
+        Method getProviderClassMethod;
+        if (sdkInt > 22) {
+            getProviderClassMethod = factoryClass.getDeclaredMethod("getProviderClass");
+        } else if (sdkInt == 22) {
+            getProviderClassMethod = factoryClass.getDeclaredMethod("getFactoryClass");
+        } else {
+            Log.i("WebView", "Don't need to Hook WebView");
+            return;
+        }
+        getProviderClassMethod.setAccessible(true);
+        Class<?> factoryProviderClass = (Class<?>) getProviderClassMethod.invoke(factoryClass);
+        Class<?> delegateClass = Class.forName("android.webkit.WebViewDelegate");
+        Constructor<?> delegateConstructor = delegateClass.getDeclaredConstructor();
+        delegateConstructor.setAccessible(true);
+        if (sdkInt < 26) {
+            Constructor<?> providerConstructor = factoryProviderClass.getConstructor(delegateClass);
+            if (providerConstructor != null) {
+                providerConstructor.setAccessible(true);
+                sProviderInstance = providerConstructor.newInstance(delegateConstructor.newInstance());
+            }
+        } else {
+            Field chromiumMethodName = factoryClass.getDeclaredField("CHROMIUM_WEBVIEW_FACTORY_METHOD");
+            chromiumMethodName.setAccessible(true);
+            String chromiumMethodNameStr = (String) chromiumMethodName.get(null);
+            if (chromiumMethodNameStr == null) {
+                chromiumMethodNameStr = "create";
+            }
+            Method staticFactory = factoryProviderClass.getMethod(chromiumMethodNameStr, delegateClass);
+            if (staticFactory != null) {
+                sProviderInstance = staticFactory.invoke(null, delegateConstructor.newInstance());
+            }
+        }
+
+        if (sProviderInstance != null) {
+            field.set("sProviderInstance", sProviderInstance);
+            Log.i("WebView", "Hook success!");
+        } else {
+            Log.i("WebView", "Hook failed!");
+        }
+    } catch (Throwable e) {
+        Log.e("WebView", "throwable = " + e.getMessage());
+    }
+}
+```
+
 ## java.lang.UnsatisfiedLinkError: dlopen failed: "/data/app/~/com.xxx/lib/arm64/libc++_shared.so" has bad ELF magic: 00000000
 * 接入MyScript OCR识别so库报错
 
