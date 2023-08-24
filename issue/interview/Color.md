@@ -13,6 +13,7 @@ val colorId = resources.getIdentifier("color_id", "color", context.packageName)
 
 val color1: Int = 0xFE031D
 val color2: String = "#FE031D"
+val color3 = Color.argb(10, 23, 67, 8)
 ```
 
 ### #FE031D -> int
@@ -34,10 +35,10 @@ Log.e("ARGB: ", sb.toString());
 
 方式二：
 val color = 0xFE031D;
-val a = ((color >> 24) & 0xff);
-val r = ((color >> 16) & 0xff);
-val g = ((color >> 8) & 0xff);
-val b = ((color) & 0xff);
+val a = ((color >> 24) and 0xff);
+val r = ((color >> 16) and 0xff);
+val g = ((color >> 8) and 0xff);
+val b = ((color) and 0xff);
 // 输出结果是：0，254,3,29
 ```
 
