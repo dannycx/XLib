@@ -81,6 +81,13 @@ android {
             signingConfig signingConfigs.beta
         }
     }
+
+    configurations {
+        // 排除项目中的依赖，解决多版本依赖冲突问题
+        // all*.exclude group: 'com.google.code.gson'
+        // all*.exclude group: 'com.squareup.okhttp3'
+        // all*.exclude group: 'com.squareup.okio'
+    }
 }
 
 dependencies { // 依赖
