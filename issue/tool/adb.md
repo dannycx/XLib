@@ -7,6 +7,9 @@
 ## 查看触摸事件
 * getevent -l -t | grep "BTN"
 
+## 日志抓取
+* adb logcat | findstr 关键字 > E://logcat.txt
+
 ## 卸载app
 * adb shell pm uninstall --user 0 com.xxx.xxx
 
