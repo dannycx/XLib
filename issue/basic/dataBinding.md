@@ -94,7 +94,7 @@ class ViewStubLayout(context: Context, attrs: AttributeSet? = null, defAttr: Int
     }
 
     /**
-     * 表格回调接口
+     * 回调接口
      */
     interface XListener {
         /**
