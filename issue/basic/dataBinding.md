@@ -54,55 +54,24 @@ android {
     </LinearLayout>
 </layout>
 
-3.XActivity.kt
-/*
- * Copyright (c) 2023-2023 Hitevision
- */
-
-package com.hht.table.ui
-
-import android.content.Context
-import android.util.AttributeSet
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.FrameLayout
-import androidx.databinding.DataBindingUtil
-import com.hht.table.bean.TABLE_TOOL_COPY
-import com.hht.table.bean.TABLE_TOOL_COPY_CUT
-import com.hht.table.bean.TABLE_TOOL_CUT
-import com.hht.table.bean.TABLE_TOOL_DELETE
-import com.hht.table.bean.TABLE_TOOL_EDIT
-import com.hht.table.bean.TABLE_TOOL_STYLE
-import tw.com.newline.whiteboard.android.R
-import tw.com.newline.whiteboard.android.databinding.TableToolNewlineBinding
-import tw.com.newline.whiteboard.android.databinding.TableToolOemBinding
-import tw.com.newline.whiteboard.android.databinding.TableToolPopupBinding
-import tw.com.newline.whiteboard.android.util.FlavorChipsetUtil
-import tw.com.newline.whiteboard.android.util.ResourcesUtil
-
-/**
- * 表格选择工具
- *
- * @author x
- * @since 2023-03-03
- */
-class TableToolPopup(context: Context, attrs: AttributeSet? = null, defAttr: Int = 0, defRes: Int = 0)
+3.ViewStubLayout.kt
+class ViewStubLayout(context: Context, attrs: AttributeSet? = null, defAttr: Int = 0, defRes: Int = 0)
     : FrameLayout(context, attrs, defAttr, defRes) {
     constructor(context: Context, attrs: AttributeSet? = null): this(context, attrs, 0)
 
-    private lateinit var mViewStubBinding: ViewStubTestOemBinding
+    private lateinit var mViewStubBinding: ViewStubTestBinding
     private var mListener: TableToolListener? = null
-    private val mBinding: TableToolPopupBinding by lazy {
-        TableToolPopupBinding.inflate(LayoutInflater.from(context), this, false)
+    private val mBinding: ViewStubLayoutBinding by lazy {
+        ViewStubLayoutBinding.inflate(LayoutInflater.from(context), this, false)
     }
 
     init {
         removeAllViews()
         addView(mBinding.root)
 
-        if (!mBinding.xxx.isInflated) {
-                mBinding.tableToolOem.viewStub?.inflate()?.let {
-                    mViewStubBinding = DataBindingUtil.bind<ViewStubTestOemBinding>(it)!!
+        if (!mBinding.viewStubTest.isInflated) {
+                mBinding.viewStubTest.viewStub?.inflate()?.let {
+                    mViewStubBinding = DataBindingUtil.bind<ViewStubTestBinding>(it)!!
                 }
             }
             if (::mViewStubBinding.isInitialized) {
