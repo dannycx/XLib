@@ -60,7 +60,7 @@ class ViewStubLayout(context: Context, attrs: AttributeSet? = null, defAttr: Int
     constructor(context: Context, attrs: AttributeSet? = null): this(context, attrs, 0)
 
     private lateinit var mViewStubBinding: ViewStubTestBinding
-    private var mListener: TableToolListener? = null
+    private var mListener: XListener? = null
     private val mBinding: ViewStubLayoutBinding by lazy {
         ViewStubLayoutBinding.inflate(LayoutInflater.from(context), this, false)
     }
@@ -89,7 +89,7 @@ class ViewStubLayout(context: Context, attrs: AttributeSet? = null, defAttr: Int
         layoutParams?.height = ResourcesUtil.getDimension(R.dimen.dp_48)
     }
 
-    fun setListener(listener: TableToolListener) {
+    fun setListener(listener: XListener) {
         mListener = listener
     }
 
