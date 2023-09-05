@@ -53,5 +53,11 @@
 ```
 
 ## 问题：比实际宽度短
-* 设置margin负值
-    * android:layout_marginEnd="-20dp"
+1. 设置margin负值
+* android:layout_marginEnd="-20dp"
+
+2. 调节padding
+```
+android:paddingStart="@dimen/dp_0"
+android:paddingEnd="@dimen/dp_0"
+```
