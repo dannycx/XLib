@@ -1,5 +1,21 @@
 # 问题记录
 
+## Scheduling restart of crashed servic
+* 应用进程异常被杀，服务保活触发重启，服务启动访问未初始化资源或已被杀对象导致循环重启(ANR)
+```
+服务启动模式：onStartCommand
+START_STICKY:被杀后系统自动重启拉活，不会保留之前参数
+START_STICKY_COMPATIBILITY:START_STICKY的兼容模式，不保证服务被杀后系统自动拉活
+START_NOT_STICKY:服务被杀后不会自动拉活
+START_REDELIVER_INTENT:服务被杀后会被系统拉活，并保留之前intent参数
+
+修改：
+fun onStartCommand(intent: Intent, flags: Int, startId: Int) {
+    ...
+    return START_NOT_STICKY
+}
+```
+
 ## For security reasons, WebView is not allowed in privileged processes
 * 当应用app申请系统应用，AndroidManifest.xml添加如下配置
 ```
