@@ -50,6 +50,10 @@ android {
         enabled = true
     }
 
+    buildFeatures { // 默认不生成BuildConfig，修改如下即可
+        buildConfig = true
+    }
+
     applicationVariants.all{
         variant ->
             variant.outputs.all{
