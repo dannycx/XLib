@@ -49,14 +49,26 @@ val b = ((color) and 0xff);
  * int Color 转String Color
  *
  * 例：0XFE031D 转换为 #FE031D
+ * 注意：0x003443 需特殊处理，补0
  */
 fun colorIntToHex(color: Int): String {
-    // val color: Int = 0XFE031D
     val sb = StringBuilder()
     sb.append("#")
-    sb.append(Integer.toHexString(Color.red(color)))
-    sb.append(Integer.toHexString(Color.green(color)))
-    sb.append(Integer.toHexString(Color.blue(color)))
+    var red = Integer.toHexString(Color.red(color))
+    if (red.length == 1) {
+        red = "0$red"
+    }
+    sb.append(red)
+    var green = Integer.toHexString(Color.green(color))
+    if (green.length == 1) {
+        green = "0$green"
+    }
+    sb.append(green)
+    var blue = Integer.toHexString(Color.blue(color))
+    if (blue.length == 1) {
+        blue = "0$blue"
+    }
+    sb.append(blue)
     return sb.toString()
 }
 ```
