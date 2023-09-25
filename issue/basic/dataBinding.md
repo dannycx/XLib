@@ -70,15 +70,15 @@ class ViewStubLayout(context: Context, attrs: AttributeSet? = null, defAttr: Int
         addView(mBinding.root)
 
         if (!mBinding.viewStubTest.isInflated) {
-                mBinding.viewStubTest.viewStub?.inflate()?.let {
-                    mViewStubBinding = DataBindingUtil.bind<ViewStubTestBinding>(it)!!
-                }
+            mBinding.viewStubTest.viewStub?.inflate()?.let {
+                mViewStubBinding = DataBindingUtil.bind<ViewStubTestBinding>(it)!!
             }
-            if (::mViewStubBinding.isInitialized) {
-                mViewStubBinding.xxx.setOnClickListener {
-                    callback(XXX)
-                }
+        }
+        if (::mViewStubBinding.isInitialized) {
+            mViewStubBinding.xxx.setOnClickListener {
+                callback(XXX)
             }
+        }
     }
 
     private fun callback(tableTool: Int) {
