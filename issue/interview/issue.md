@@ -1,5 +1,26 @@
 # 问题记录
 
+## 'compileDebugJavaWithJavac' task (current target is 1.8) and 'kaptGenerateStubsDebugKotlin' task (current target is 17) jvm target compatibility should be set to the same Java version.
+* 表示执行compileDebugJavaWithJavac任务时，Java编译版本为1.8，而执行kaptGenerateStubsDebugKotlin任务时，kotlin编译版本为17，它们应设为相同版本
+```
+解决：build.gradle
+plugins {
+    ...
+    id 'kotlin-kapt'
+}
+
+android {
+    ...
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+```
+
 ## Scheduling restart of crashed servic
 * 应用进程异常被杀，服务保活触发重启，服务启动访问未初始化资源或已被杀对象导致循环重启(ANR)
 ```
