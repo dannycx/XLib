@@ -25,24 +25,25 @@ import kotlin.system.exitProcess
  * crash堆栈信息获取
  * crash日志上传
  */
-class CrashHandler(val context: Context): Thread.UncaughtExceptionHandler {
+class CrashHandler: Thread.UncaughtExceptionHandler {
     companion object {
         private const val TAG = "CrashHandler"
 
         @SuppressLint("StaticFieldLeak")
         lateinit var mInstance: CrashHandler
+        @SuppressLint("StaticFieldLeak")
+        lateinit var mContext: Context
         var mDefaultHandler: Thread.UncaughtExceptionHandler? = null
+
+        fun init(context: Context) {
+            mContext = context
+            mInstance = CrashHandler()
+            mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler()
+            Thread.setDefaultUncaughtExceptionHandler(mInstance)
+        }
     }
 
     private val mInfos: MutableMap<String, String> = mutableMapOf()
-    init {
-        mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler()
-        Thread.setDefaultUncaughtExceptionHandler(this)
-    }
-
-    fun init() {
-        mInstance = CrashHandler(context)
-    }
 
     /**
      * 捕获异常
@@ -86,8 +87,8 @@ class CrashHandler(val context: Context): Thread.UncaughtExceptionHandler {
 
     private fun collectDeviceInfo() {
         try {
-            val pm = context.packageManager
-            val pi = pm.getPackageInfo(context.packageName, PackageManager.GET_ACTIVITIES)
+            val pm = mContext.packageManager
+            val pi = pm.getPackageInfo(mContext.packageName, PackageManager.GET_ACTIVITIES)
             val versionName = pi?.versionName?:"null"
             val versionCode = "${pi?.versionCode}"
             mInfos["versionName"] = versionName
