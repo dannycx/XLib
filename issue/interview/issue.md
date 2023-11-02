@@ -1,5 +1,8 @@
 # 问题记录
 
+## 多任务窗口不显示该应用
+* luanch activity增加属性：android:excludeFromRecents="true"
+
 ## 'compileDebugJavaWithJavac' task (current target is 1.8) and 'kaptGenerateStubsDebugKotlin' task (current target is 17) jvm target compatibility should be set to the same Java version.
 * 表示执行compileDebugJavaWithJavac任务时，Java编译版本为1.8，而执行kaptGenerateStubsDebugKotlin任务时，kotlin编译版本为17，它们应设为相同版本
 ```
