@@ -14,19 +14,19 @@
 #### 添加DNS解析策略
 ```
 Object HttpTool {
-	private const val TAG = "HttpTool"
-	private const val URL = "https://www.xxx.com"
+    private const val TAG = "HttpTool"
+    private const val URL = "https://www.xxx.com"
 
-	fun initHttp() {
-		val client = OkHttpClient.Builder().build()
-		Request.Builder().url(URL).build().also {
-			kotlin.runCatching {
-				client.newCall(it).execute()
-			}.onFailure {
-				Log.e(TAG, "initHttp: error: $it")
-			}
-		}
-	}
+    fun initHttp() {
+	val client = OkHttpClient.Builder().build()
+	Request.Builder().url(URL).build().also {
+            kotlin.runCatching {
+                client.newCall(it).execute()
+            }.onFailure {
+                Log.e(TAG, "initHttp: error: $it")
+            }
+        }
+    }
 }
 ```
 * 很明显xxx.com域名不存在，就会报如下错误：
@@ -45,10 +45,10 @@ import java.util.List;
 
 // 路由寻址
 public interface Dns {
-	/**
-	 * 使用｛@link InetAddress#getAllByName｝请求底层操作系统查找IP地址。
-	 * 大多数自定义｛@link Dns｝实现都应委派到此实例。
-	 */
+    /**
+     * 使用｛@link InetAddress#getAllByName｝请求底层操作系统查找IP地址。
+     * 大多数自定义｛@link Dns｝实现都应委派到此实例。
+     */
     Dns SYSTEM = (hostname) -> {
         if (hostname == null) {
             throw new UnknownHostException("hostname == null");
@@ -63,38 +63,38 @@ public interface Dns {
         }
     };
 
-	/**
- 	 * 返回｛@code hostname｝的IP地址，按OkHttp尝试的顺序排列。
- 	 * 如果连接到某个地址失败，OkHttp将重试与下一个地址的连接，直到要么建立了连接，要么耗尽了IP地址集，要么超出了限制。
-	 */
+    /**
+     * 返回｛@code hostname｝的IP地址，按OkHttp尝试的顺序排列。
+     * 如果连接到某个地址失败，OkHttp将重试与下一个地址的连接，直到要么建立了连接，要么耗尽了IP地址集，要么超出了限制。
+     */
     List<InetAddress> lookup(String var1) throws UnknownHostException;
 }
 
 // 自定义寻址策略
 class MyDns: Dns {
-	private const val TAG = "MyDns"
+    private const val TAG = "MyDns"
 
-	override fun lookup(hostname: String): MutableList<InetAddress> {
-		val result = mutableListOf<InetAddress>()
-		var systemAddressList: MutableList<InetAddress>? = null
+    override fun lookup(hostname: String): MutableList<InetAddress> {
+        val result = mutableListOf<InetAddress>()
+        var systemAddressList: MutableList<InetAddress>? = null
 
-		// 通过系统DNS解析
-		kotlin.runCatching {
-			systemAddressList = Dns.SYSTEM.lookup(hostname)
-		}.onFailure {
-			Log.e(TAG, "lookup: it")
-		}
+        // 通过系统DNS解析
+        kotlin.runCatching {
+            systemAddressList = Dns.SYSTEM.lookup(hostname)
+        }.onFailure {
+            Log.e(TAG, "lookup: it")
+        }
 
-		if (systemAddressList != null && systemAddressList!!.isNotEmpty()) {
-			result.addAll(systemAddressList!!)
-		} else {
-			// 系统DNS解析失败，走自定义路由
-			result.add(InetAddress.getByName(www.google.com))
+        if (systemAddressList != null && systemAddressList!!.isNotEmpty()) {
+            result.addAll(systemAddressList!!)
+        } else {
+            // 系统DNS解析失败，走自定义路由
+            result.add(InetAddress.getByName(www.google.com))
 
-			// 一台服务器支持多域名
-			// result.addAll(InetAddress.getAllByName(ip).toList())
-		}
-	}
+            // 一台服务器支持多域名
+            // result.addAll(InetAddress.getAllByName(ip).toList())
+        }
+    }
 }
 
 使用：
@@ -151,11 +151,11 @@ class StringTypeAdapter: JsonDeserializer<String> {
 
 使用：
 GsonBuilder()
-	.registerTypeAdapter(String::class.java, StringTypeAdapter())
-	.registerTypeAdapter(List::class.java, ListTypeAdapter())
-	.create().also {
-		GsonConverterFactory.create(it)
-	}
+    .registerTypeAdapter(String::class.java, StringTypeAdapter())
+    .registerTypeAdapter(List::class.java, ListTypeAdapter())
+    .create().also {
+        GsonConverterFactory.create(it)
+    }
 ```
 
 ## Https协议
