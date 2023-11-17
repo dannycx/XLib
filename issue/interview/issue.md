@@ -1,5 +1,10 @@
 # 问题记录
 
+## git clong https://github.com/xxx/xxx.git 时报错
+* Unnamed repository; edit this file 'description' to name the repository.
+1. 下载目录存在.git文件删除后clone代码
+2. 新建目录clone代码
+
 ## 多任务窗口不显示该应用
 * luanch activity增加属性：android:excludeFromRecents="true"
 
