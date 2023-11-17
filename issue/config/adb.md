@@ -1,5 +1,12 @@
 # ADB
 
+## 过度绘制adb命令
+* adb -s 192.168.x.x shell setprop debug.hwui.overdraw show
+* adb -s 192.168.x.x shell setprop debug.hwui.overdraw false
+
+## 触摸点轨迹
+* adb shell settings put system pointer_location 1
+
 ## 查看安装app版本信息
 * adb shell pm dump com.xxx.xxx | grep "version"
 * adb shell pm dump com.xxx.xxx | findstr version
