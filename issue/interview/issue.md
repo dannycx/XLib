@@ -1,5 +1,8 @@
 # 问题记录
 
+## Could not write file to D:\workplace\flutter_project\x_write\build\app\intermediates\flutter\debug\flutter_assets\shaders/ink_sparkle.frag.spirv
+* 退出向日葵软件
+
 ## git clong https://github.com/xxx/xxx.git 时报错
 * Unnamed repository; edit this file 'description' to name the repository.
 1. 下载目录存在.git文件删除后clone代码
