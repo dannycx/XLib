@@ -1,5 +1,7 @@
 # Flutter
 
+[Flutter项目搭建](https://github.com/dannycx/XTools/blob/main/notes/flutter/flutter_one.md)
+
 ## 跨组件通信
 
 
