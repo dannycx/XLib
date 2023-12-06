@@ -2,11 +2,16 @@
 
 **Canvas画布**
 * 提供绘制各种图案方法：点、线、圆等。
+
 **Paint画笔**
 * 提供画笔各种属性：颜色、文本、图形样式、位图模式、滤镜等
+
 [Paint属性](https://github.com/dannycx/XLib/issue/draw/paint.md)
+
 **path路径**
+
 * 路径属性：直，曲，闭合，非闭合，圆，方等
+
 [Path属性](https://github.com/dannycx/XLib/issue/draw/path.md)
 
 ## Canvas
