@@ -172,13 +172,14 @@ canvas.drawPosText(text, array, paint)
 **Paint的FontMetrics使用**
 ```
 FontMetrics属性：
-	base line：基准线y=0
-	top：上边界，值为负值，值等于距base line距离
-	ascent：负值，值等于距base line距离
-	descent：正值，值等于距base line距离
-	bottom：正值，值等于距base line距离
-	leading：两行间距，上一行bottom与下一行top间距，值总为0，可忽略
+base line：基准线y=0
+top：上边界，值为负值，值等于距base line距离
+ascent：负值，值等于距base line距离
+descent：正值，值等于距base line距离
+bottom：正值，值等于距base line距离
+leading：两行间距，上一行bottom与下一行top间距，值总为0，可忽略
 ```
+
 #### 行距
 * 相邻两行的基线之间距离。默认等于descent.abs() + ascent.abs()
 * 可通过属性android:lineSpacingExtra和android:lineSpacingMultiplier修改行距
@@ -186,6 +187,7 @@ FontMetrics属性：
 ```
 行距 = 默认行距 * lineSpacingMultiplier + lineSpacingExtra
 ```
+
 #### fontPadding计算
 * 顶fontPadding = (top - ascent).abs()
 * 底fontPadding = bottom - descent
@@ -196,9 +198,28 @@ androoid中字体高度为bottom.abs() + top.abs()
 所以android字体垂直方向比设计稿多占空间，可通过设置android:includeFontPadding=false解决
 ```
 
+#### 文本在控件水平垂直居中显示
+```
+-------------top----------------
+-------------ascent-------------
+-------------文字正中------------
+-------------baseline-----------
+-------------descent------------
+-------------bottom-------------
+```
+* x = (view.width - text.length) / 2
+* 文字高度 = fontMetrics.bottom - fontMetrics.top
+* 文字正中 = 文字高度 / 2
+* 文字正中到baseline = 文字高度一半 - fontMetrics.bottom
+* val distanceY = (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom
+* y = view.height / 2 + distanceY
+```
+// 位于控件水平垂直位置
+canvas.drawText(text, x, y, paint)
+```
 
-
-
-
-
-
+#### Paint的setTextAlign使用
+* 控制文字水平对齐方式（文字与起点相对位子）
+* Align.LEFT：居左，起点在文字左侧
+* Align.CENTER：居中，起点在文字中间
+* Align.RIGHT：居右，起点在文字右侧
