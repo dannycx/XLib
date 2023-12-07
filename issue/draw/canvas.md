@@ -134,12 +134,67 @@ void arcTo(left: Float, top: Float, right: Float, bottom: Float, startAngle: Flo
 
 #### Path 中图形计算
 * 多个Path间可进行图形运算，得到更复杂和不规则图形
+```
+    Path.Op.DIFFERENCE：差集，A减与B重叠区域余下区域
+    Path.Op.INTERSECT：交集，A与B重叠区域
+    Path.Op.REVERSE_DIFFERENCE：反差集，B减与A重叠区域余下区域
+    Path.Op.UNION：并集，A与B并集
+    Path.Op.XOR：补集，并集 - 交集
+```
 
-//-
+**绘制文字**
+```
+// 指定位置开始绘制文字
+void drawText(text: CharArray, index: Int, count: Int, x: Float, y: FLoat, paint: Paint)
+void drawText(text: String, x: Float, y: FLoat, paint: Paint)
+void drawText(text: String, start: Int, end: Int, x: Float, y: FLoat, paint: Paint)
+void drawText(text: CharSequence, start: Int, end: Int, x: Float, y: FLoat, paint: Paint)
 
-    Path.Op.DIFFERENCE:
+// 沿path绘制文字，hOffset、vOffset与path水平垂直偏移距离
+void drawTextOnPath(text: String, path: Path, hOffset: Float, vOffset: Float, paint: Paint)
+void drawTextOnPath(text: CharArray, index: Int, count: Int, path: Path, hOffset: Float, vOffset: Float, paint: Paint)
 
+// 指定位置绘制文字（已过时）,按自定义坐标集绘制文字
+void drawPosText(text: String, @Size(multiple = 2) pos: FloatArray, paint: Paint)
+void drawPosText(text: CharArray, index: Int, count: Int, @Size(multiple = 2) pos: FloatArray, paint: Paint)
+例：实现垂直文本可传坐标集
+val paint = Paint()
+val text = "好好学习"
+val array = FloatArray(text.length * 2).apply {
+	for (i in 0 until size step 2) {
+	    set(i, 100f) // x,水平方向每个字x相同，都是100
+	    set(i + 1, (i + 1) * paint.textSize) // y,垂直方向每个字间隔一个字大小
+	}
+}
+canvas.drawPosText(text, array, paint)
+```
 
+**Paint的FontMetrics使用**
+```
+FontMetrics属性：
+	base line：基准线y=0
+	top：上边界，值为负值，值等于距base line距离
+	ascent：负值，值等于距base line距离
+	descent：正值，值等于距base line距离
+	bottom：正值，值等于距base line距离
+	leading：两行间距，上一行bottom与下一行top间距，值总为0，可忽略
+```
+#### 行距
+* 相邻两行的基线之间距离。默认等于descent.abs() + ascent.abs()
+* 可通过属性android:lineSpacingExtra和android:lineSpacingMultiplier修改行距
+* lineSpacingExtra默认为0
+```
+行距 = 默认行距 * lineSpacingMultiplier + lineSpacingExtra
+```
+#### fontPadding计算
+* 顶fontPadding = (top - ascent).abs()
+* 底fontPadding = bottom - descent
+* 通过android:includeFontPadding可决定字体高度是否包含fontPadding
+```
+其他（Word，Stetch等）高度为descent.abs() + ascent.abs()
+androoid中字体高度为bottom.abs() + top.abs()
+所以android字体垂直方向比设计稿多占空间，可通过设置android:includeFontPadding=false解决
+```
 
 
 
