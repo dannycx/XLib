@@ -45,3 +45,11 @@ paint.isStrikeThruText = isStrikethrough
 // 下划线
 paint.isUnderlineText = isUnderlineText
 ```
+
+**验证码绘制**
+
+
+
+
+
+
