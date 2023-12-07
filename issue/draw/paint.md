@@ -47,7 +47,66 @@ paint.isUnderlineText = isUnderlineText
 ```
 
 **验证码绘制**
+```
+val bitmap = Bitmap.createBitmap(300, 180, Bitmap.Config.ARGB_8888)
+val canvas = Canvas(bitmap)
+canvas.drawColor(Color.WHITE)
 
+val paint = Paint()
+paint.isAntiAlias = true
+paint.color = Color.BLACK
+paint.style = Paint.Style.FILL
+// 边框
+canvas.drawRect(Rect(40, 20, 260, 160), paint)
+
+// 验证码
+val text = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+val random = Random()
+val randomText = CharArray(4)
+int index = 0
+while (index < 4 && randomText[index] == 0) {
+	val charTemp = text[random.nextInt(text.length)]
+	val contains = false
+	for (i in 0 until randomText.length) {
+		if (charTemp == randomText[i]) {
+			contains = true
+			break;
+		}
+	}
+	if (!contains) {
+		randomText[index] = charTemp
+	}
+}
+
+paint.textSize = 30f
+paint.isFakeboldText = true
+paint.letterSpacing = 1
+canvas.drawText(randomText, 0, 4, 50, 40, paint)
+
+paint.style = Paint.Style.STROKE
+for (i in 0 until 100) {
+	// 随机颜色
+	val color = Color.argb(150, 55 + random.nextInt(200), 55 + random.nextInt(200), 55 + random.nextInt(200))
+	paint.color = color
+
+	// 直线
+	// val startY = 40 + random.nextInt(100)
+	// val endX = 40 + random.nextInt(100)
+	// canvas.drawLine(40, startY, endX, startY, paint)
+
+	// 贝塞尔
+	val path = Path()
+	val controlX = 40 + random.nextInt(100)
+	val controlY = 20 + random.nextInt(100)
+	path.moveTo(40, 100 + random.nextInt(100))
+
+	val endX = 260
+	val endY = 20 + random.nextInt(100)
+	path.quadTo(controlX, controlY, endX, endY)
+	canvas.drawPath(path, paint)
+}
+```
 
 
 
