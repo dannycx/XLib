@@ -1,5 +1,24 @@
 # 问题记录
 
+**java.Tang.SecurityException: Permission Denial:this requires android.permission.INTERACT_ACROSS_USERS_FULL or android.permission.NTERACT_ACROSS_USERS**
+```
+try {
+    Class<?> activityManager = Class.forName("android.app.ActivityManager");
+    int currentUserId = (int)activityManager.getMethod("getCurrentUser").invoke(activityManager);
+    Method methodOf = UserHandle.class.getMethod("of",int.class);
+    UserHandle userHandle = (UserHandle)methodOf.invoke(null,currentUserId);
+    context.sendBroadcastAsUser(new Intent(context.getString(R.string.broadcast_action_app_foreground)),userHandle);
+} catch (Exception e) {
+    Log.e("", "e: " + e);
+}
+
+// 使用sendBroadcastAsUser发广播需新增权限
+<uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL"
+    tools:ignore="ProtectedPermissions"/>
+<uses-permission android:name="android.permission.INTERACT_ACROSS_USERS"
+    tools:ignore="ProtectedPermissions"/>
+```
+
 ## Could not write file to D:\workplace\flutter_project\x_write\build\app\intermediates\flutter\debug\flutter_assets\shaders/ink_sparkle.frag.spirv
 * 退出向日葵软件
 
