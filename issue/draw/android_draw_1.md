@@ -121,8 +121,9 @@ canvas.matrix = matrix
 ```
 
 **裁剪区Clip**
-!(https://github.com/dannycx/XLib/blob/main/issue/draw/clip.png)
-!(/clip.png)
+
+![](https://github.com/dannycx/XLib/blob/main/issue/draw/clip.png)
+![](/clip.png)
 
 
 
