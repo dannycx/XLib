@@ -125,6 +125,80 @@ canvas.matrix = matrix
 ![](https://github.com/dannycx/XLib/blob/main/issue/draw/clip.png)
 ![](/clip.png)
 
+* 剪切区：canvas中裁剪一块区域，只有该区域内容可见，区域外不可见
+* 剪切区：Rect，path，剪切区之间计算得到新的剪切区
+```
+// 矩形区域裁剪
+fun clipRect(rect: Rect): Boolean
+fun clipRect(rectF: RectF): Boolean
+fun clipRect(l: Int, t: Int, r: Int, b: Int): Boolean
+fun clipRect(l: Float, t: Float, r: Float, b: Float): Boolean
+
+// 路径裁剪
+fun clipPath(path: Path): Boolean
+
+例：裁剪指定区域绘制
+// 缩小4倍
+val bitmap = mBitmap.scale(mBitmap.width / 4, mBitmap.height / 4)
+// 绘制原图
+canvas.drawBitmap(bitmap, 0f, 0f, null)
+// 下移，绘制裁剪区域
+canvas.translate(0f, bitmap.height.toFloat() + 5)
+// 裁剪左上角1/4绘制
+canvas.clipRect(Rect(0, 0, bitmap.width / 2, bitmap.height / 2))
+canvas.drawBitmap(bitmap, 0f, 0f, null)
+```
+
+#### 剪切区图形计算
+```
+Op.DIFFERENCE：差集，A-B，A剩余区域
+Op.INTERSECT：交集，A与B相交区域
+Op.REPLACE：取B范围，与A有交集覆盖A
+Op.REVERSE_DIFFERENCE：反差集，B-A，B剩余区域
+Op.UNION：并集，A与B所有区域
+Op.XOR：补集，A与B并集减A与B交集
+
+// 裁剪方法
+fun clipRect(rect: Rect, op: Op)
+fun clipRect(rectF: RectF, op: Op)
+fun clipRect(l: Float, t: Float, r: Float, b: Float, op: Op)
+fun clipRect(path: Path, op: Op)
+
+例：裁剪指定区域与path计算后区域绘制
+// 缩小4倍
+val bitmap = mBitmap.scale(mBitmap.width / 4, mBitmap.height / 4)
+// 绘制原图
+canvas.drawBitmap(bitmap, 0f, 0f, null)
+// 下移，绘制裁剪区域
+canvas.translate(0f, bitmap.height.toFloat() + 5)
+// 裁剪左上角1/4
+canvas.clipRect(Rect(0, 0, bitmap.width / 2, bitmap.height / 2))
+val path = Path()
+// path.addRect(bitmap.width / 4f, bitmap.height / 4f, bitmap.height / 4 * 3f,
+//     bitmap.height / 4 * 3f, Path.Direction.CCW)
+path.addCircle(bitmap.width / 2f, bitmap.height / 2f, bitmap.height / 4f, Path.Direction.CCW)
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+    // 高版本，默认交集
+    canvas.clipPath(path)
+} else {
+    // 使用并集
+    canvas.clipPath(path, Region.Op.UNION)
+}
+canvas.drawBitmap(bitmap, 0f, 0f, null)
+
+例：裁剪指定区域绘制圆
+// 裁剪指定区域绘制，指定区域内绘制才可见
+canvas.drawColor(Color.BLUE)
+canvas.clipRect(200, 200, 800, 800)
+canvas.drawColor(Color.YELLOW)
+val paint = Paint()
+paint.color = Color.BLACK
+paint.style = Paint.Style.FILL
+canvas.drawCircle(300f, 300f, 50f, paint)
+```
+
+#### 裁剪实现帧动画效果
+
 
 
 
