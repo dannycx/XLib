@@ -110,6 +110,98 @@ RadialGradient(x: Float, y: Float, radius: Float, color0: Int, color1: Int, tile
 RadialGradient(x: Float, y: Float, radius: Float, colors: IntArray, positions: FloatArray, tile: TileMode)
 ```
 
+**SweepGradient（扫描渐变）**
+* 类似雷达扫描效果，固定圆心，从0°开始将半径假想为有形并旋转一周绘制渐变颜色
+* 无需半径和角度（无穷远+360°）
+```
+// 圆心：(x, y)，起始颜色：color0，color1
+SweepGradient(cx: Float, cy: Float, color0: Int, color1: Int)
+// 圆心：(x, y)，颜色：colors，颜色起始比例：positions（null颜色平均分配比例）
+SweepGradient(x: Float, y: Float, colors: IntArray, positions: FloatArray)
+
+例：
+val rect = Rect(0, 0, 300, 300)
+val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply{
+	style = Paint.Style.FILL
+}
+val sg = SweepGradient(150f, 150f, Color.RED, Color.YELLOW)
+// val sg = SweepGradient(150f, 150f, intArrayOf(Color.RED, Color.YELLOW, Color.BLUE), null)
+paint.setShader(sg)
+canvas.drawRect(rect)
+```
+
+**BitmapShader（位图渐变）**
+* 绘制图形时将指定位图作为背景
+* 图形 < 位图，渐变模式平铺：TileMode.CLAMP(不平铺)，TileMode.REPEAT(平铺)，TileMode.MIRROR(平铺，但交错位图彼此镜像，方向相反)
+* 可同时指定水平垂直两个方向渐变模式
+* 填充起点为view左上角，终点右下角
+```
+// 位图：bitmap，x,y方向重复模式
+BitmapShader(bitmap: Bitmap, tileX: TileMode, tileY, TileMode)
+例：水平重复，垂直镜像
+val paint = ...
+val bitmap = ...
+val bs = BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.MIRROR)
+paint.setShader(bs)
+
+例：望远镜
+```
+
+**ComposeShader（混合渐变）**
+* 将两种不同渐变通过位图运算得到的一种更复杂渐变
+```
+// shaderA：上层位图渐变对象，shaderB：下层位图渐变对象，mode：混合模式（位图运算类型）
+ComposeShader(shaderA: Shader, shaderB: Shader, mode: Xfermode)
+ComposeShader(shaderA: Shader, shaderB: Shader, mode: Mode)
+
+例：简单使用
+val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+val bitmap = BitmapFactory.decodeResource(resources, R.drawable.xxx_bitmap)
+val rect = Rect(0, 0, bitmap.width * 4, bitmap.height * 4)
+// 位图渐变：水平重复，垂直镜像
+val bs = BitmapShader(bitmp, Shader.TileMode.REPEAT, Shader.TileMode.MIIRROR)
+// 线性渐变
+val lg = LinearGradient(rect.left, rect.top, rect.right, rect.bottom, Color.YELLOW, Color.BLUE, Shader.TileMode.CLAMP)
+// 混合渐变
+val cs = ComposeShader(bs, lg, PorterDuff.Mode.SRC_ATOP)
+paint.shader = cs
+canvas.drawRect(rect, paint)
+```
+
+**渐变与Matrix**
+* 渐变与矩阵结合，在填充时实现位移、旋转、缩放、拉斜效果
+```
+#Shader.class
+fun setLocalMatrix(localM: Matrix)
+```
+* 例：光盘效果（旋转圆+SweepGradient渐变填充）
+![源码]https://
+
+```
+// 混合模式
+Clear：绘制内容不会提交至画布
+Src：显示第一个位图区域，并只显示第一个位图
+Dst：显示第二个位图区域，并只显示第二个位图
+SrcOver：
+DstOver：
+SrcIn：
+DstIn：取交集，并只显示第二个渐变模式交集部分
+SrcOut：
+DstOut：取第二个，并只显示第二个渐变模式交集部分
+SRC_ATOP：显示第一个位图区域，第二个只显示二者交集部分，并显示在上面
+DstATop：显示第二个位图区域，第一个只显示二者交集部分，并显示在上面
+Xor：
+Darken：取两层全部区域，交集颜色加深
+Lighten：
+Multiply：
+Screen：
+```
+
+
+
+
+
+
 ## 位图运算
 
 
