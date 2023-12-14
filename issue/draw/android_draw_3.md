@@ -201,7 +201,56 @@ Darken：显示全部区域，交集颜色加深
 LIGHTEN：显示全部区域，交集颜色点亮
 Multiply：显示交集区域，颜色叠加
 Screen：显示全部区域，交集颜色透明
+
+# Paint.class
+fun setXfermode(xfermode: XFermode): Xfermode
+paint.setXfermode(PorterDuffXfermode(Mode.CLEAR))
 ```
+
+**图层Layer**
+* canvas画布，所有位图操作（位图、圆、直线等）都可在其上绘制
+* canvas定义相关属性Matrix、颜色等
+* 多图层动画、地图（多个层叠加绘制：政区层、道路层等）需canvas提供额外图层支持
+* canvas默认只有一个图层Layer
+* 要实现多图层绘制，canvas需创建一些中间层
+* Layer按栈结构管理：入栈、出栈
+* layer入栈：后续绘图操作都发生在新入栈layer层
+* layer出栈：把本图层绘制图像绘制到下层或canvas上
+* layer可复制至canvas，并可指定layer透明度
+```
+# View.class
+// 创建图层并入栈
+// left、top、right、bottom：层层大小位置，paint：可为null，saveFlags：保存标识位（推荐：Canvas.ALL_SAVE_FLAG），
+// 返回值为入栈id，通过id可指定入栈出栈：restoreToCount(saveCount: Int)，saveCount<==>id
+fun saveLayer(left: Float, top: Float, right: Float, bottom: Float, paint: Paint): Int
+fun saveLayer(left: Float, top: Float, right: Float, bottom: Float, paint: Paint, saveFlags: Int): Int
+fun saveLayer(bounds: RectF, paint: Paint): Int
+fun saveLayer(bounds: RectF, paint: Paint, saveFlags: Int): Int
+
+// 为图层指定透明度：alpha[0, 255]
+// 返回值为入栈id，通过id可指定入栈出栈：restoreToCount(saveCount: Int)，saveCount<==>id
+fun saveLayerAlpha(left: Float, top: Float, right: Float, bottom: Float, alpha: Int): Int
+fun saveLayerAlpha(left: Float, top: Float, right: Float, bottom: Float, alpha: Int, saveFlags: Int): Int
+fun saveLayerAlpha(bounds: RectF, alpha: Int): Int
+fun saveLayerAlpha(bounds: RectF, alpha: Int, saveFlags: Int): Int
+```
+
+**位图运算技巧**
+***注意：位图一定要作用在2个位图上才有效果(必须直接操作2个bitmap对象)***
+* 通过PorterDuffXfermode指定运算模式
+* 借助layer离屏缓存（类似PS中遮罩层效果）
+1. 准备表示DST和SRC的位图（bitmap），准备第三位图用于绘制DST、SRC运算后结果
+2. 创建大小合适layer入栈
+3. 先将DST位图绘制在第三位图上
+4. 调用Paint的setXfermode定义位图运算模式
+5. 再将SRC位图绘制在第三位图上
+6. 清除位图运算模式
+7. layer出栈
+8. 将第三位图绘制在view的canvas上
+
+
+**ColorFilter的作用**
+
 
 
 
