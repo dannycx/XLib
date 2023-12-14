@@ -44,12 +44,14 @@ class TestView(...): View(...) {
 
 ## 渐变Gradient
 * 绘制过程中颜色和位图以特定规律变化，以增强物体质感和审美
+
 **渐变种类**
 * LinearGradient：线性渐变（颜色渐变）
 * RadialGradient：径向渐变（颜色渐变）
 * SweepGradient：扫描渐变（颜色渐变）
 * BitmapGradient：位图渐变（壁纸平铺）
 * ComposeGradient：混合渐变（组合渐变）
+
 **渐变模式**
 * TileMode.CLAMP：超出规定区域重复边缘的效果
 * TileMode.MIRROR：镜像方式显示
@@ -150,7 +152,7 @@ paint.setShader(bs)
 **ComposeShader（混合渐变）**
 * 将两种不同渐变通过位图运算得到的一种更复杂渐变
 ```
-// shaderA：上层位图渐变对象，shaderB：下层位图渐变对象，mode：混合模式（位图运算类型）
+// shaderA：下层位图渐变对象，shaderB：上层位图渐变对象，mode：混合模式（位图运算类型）
 ComposeShader(shaderA: Shader, shaderB: Shader, mode: Xfermode)
 ComposeShader(shaderA: Shader, shaderB: Shader, mode: Mode)
 
@@ -162,7 +164,7 @@ val rect = Rect(0, 0, bitmap.width * 4, bitmap.height * 4)
 val bs = BitmapShader(bitmp, Shader.TileMode.REPEAT, Shader.TileMode.MIIRROR)
 // 线性渐变
 val lg = LinearGradient(rect.left, rect.top, rect.right, rect.bottom, Color.YELLOW, Color.BLUE, Shader.TileMode.CLAMP)
-// 混合渐变
+// 混合渐变：bs显示全部，但lg会覆盖在上面
 val cs = ComposeShader(bs, lg, PorterDuff.Mode.SRC_ATOP)
 paint.shader = cs
 canvas.drawRect(rect, paint)
@@ -177,24 +179,28 @@ fun setLocalMatrix(localM: Matrix)
 * 例：光盘效果（旋转圆+SweepGradient渐变填充）
 ![源码]https://
 
+## 位图运算
+**PorterDuffXfermode**
+* Graphics2D种提供对位图运算模式定义支持的类
+
 ```
 // 混合模式
 Clear：绘制内容不会提交至画布
-Src：显示第一个位图区域，并只显示第一个位图
-Dst：显示第二个位图区域，并只显示第二个位图
-SrcOver：
-DstOver：
-SrcIn：
-DstIn：取交集，并只显示第二个渐变模式交集部分
-SrcOut：
-DstOut：取第二个，并只显示第二个渐变模式交集部分
-SRC_ATOP：显示第一个位图区域，第二个只显示二者交集部分，并显示在上面
-DstATop：显示第二个位图区域，第一个只显示二者交集部分，并显示在上面
-Xor：
-Darken：取两层全部区域，交集颜色加深
-Lighten：
-Multiply：
-Screen：
+SRC（替代）：显示上层位图
+DST（替代）：显示下层位图
+SRC_OVER（并集）：显示全部，上层显示在上面
+DST_OVER（并集）：显示全部，下层显示在上面
+SRC_IN（交集）：显示上层交集区域
+DST_IN（交集）：显示下层交集区域
+SRC_OUT（反差集）：显示上层非交集区域
+DST_OUT（差集）：显示下层非交集区域
+SRC_ATOP：显示下层位图区域，上层交集区域显示在最上面
+DST_ATOP：显示上层位图区域，下层交集区域显示在最上面
+Xor（补集）：显示全部区域去除交集区域部分
+Darken：显示全部区域，交集颜色加深
+LIGHTEN：显示全部区域，交集颜色点亮
+Multiply：显示交集区域，颜色叠加
+Screen：显示全部区域，交集颜色透明
 ```
 
 
@@ -202,7 +208,7 @@ Screen：
 
 
 
-## 位图运算
+
 
 
 
