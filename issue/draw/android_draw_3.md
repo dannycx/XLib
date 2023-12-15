@@ -185,6 +185,8 @@ fun setLocalMatrix(localM: Matrix)
 
 ```
 // 混合模式
+SRC：上层
+DST：下层
 Clear：绘制内容不会提交至画布
 SRC（替代）：显示上层位图
 DST（替代）：显示下层位图
