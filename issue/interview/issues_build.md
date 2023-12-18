@@ -1,5 +1,8 @@
 # Android Studio构建问题
 
+**Android Studio执行Run安装成功，但启动的还是原应用页面**
+* AS -> File -> Invalidate Caches ... -> Invalidate and Restart -> Run
+
 **java.lang.NoClassDefFoundError：Lorg/apache/http/ProtocolVersion 解析失败**
 ```
 # AndroidManifest.xml添加配置
