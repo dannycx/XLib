@@ -16,6 +16,33 @@
 
 ## 日志抓取
 * adb logcat | findstr 关键字 > E://logcat.txt
+**通过PID查看日志**
+* 查看所有进程信息
+> adb shell ps
+* 查看指定关键字的进程信息（可为包名）
+> adb shell "ps | grep com.xxx"
+* 查看所有进程的log信息
+> adb logcat -v process
+* 查看指定PID的log信息
+> adb logcat -v process | grep pid
+
+**通过关键字直接查看**
+* 查看所有的log日志
+> adb logcat
+* 过滤查看指定关键字的log日志
+> adb logcat | grep com.xxx
+
+**使用正则表达式匹配日志**
+* 匹配"V/ActivityMAnager"字符串
+> adb logcat | grep "^...Activity"
+
+**其他日志**
+* 清除日志缓存
+> adb logcat -c
+* 保存日志（保存到用户名下）
+> adb logcat -v time > logcat.txt
+* 保存到指定目录
+> adb logcat -v time > d:\logcat.txt
 
 ## 卸载app
 * adb shell pm uninstall --user 0 com.xxx.xxx
