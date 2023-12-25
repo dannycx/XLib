@@ -44,6 +44,9 @@
 * 保存到指定目录
 > adb logcat -v time > d:\logcat.txt
 
+## 安装app
+* adb install -r(覆盖) -d(删除) d:\xxx.apk
+
 ## 卸载app
 * adb shell pm uninstall --user 0 com.xxx.xxx
 
