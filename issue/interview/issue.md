@@ -163,7 +163,7 @@ android {
 ## Context.startForegroundService() did not then call Service.startForeground()
 * Android 8.0+系统不允许后台应用创建后台服务。引入startForeground()
 
-![解决](https://github.com/dannycx/XLib/blob/main/issue/interview/issues_a_b_c_s.md)
+[解决](https://github.com/dannycx/XLib/blob/main/issue/interview/issues_a_b_c_s.md)
 
 
 ## Android Studio升级问题
