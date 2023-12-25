@@ -162,48 +162,9 @@ android {
 
 ## Context.startForegroundService() did not then call Service.startForeground()
 * Android 8.0+系统不允许后台应用创建后台服务。引入startForeground()
-1. 服务
-```
-class XService: Service() {
-    override fun onCreate() {
-        super.onCreate()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForeground(100, createNotify(this, "x_id", "name"));
-        }
-        ...
-    }
 
-    ...
+![解决]https://github.com/dannycx/XLib/blob/main/issue/interview/issues_a_b_c_s.md
 
-    fun createNotify(context: Context, channelId: String, name: String): Notification {
-        val build: Notification.Builder =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
-                val channel = NotificationChannel(channelId, name, NotificationManager.IMPORTANCE_LOW)
-                manager?.createNotificationChannel(channel)
-                Notification.Builder(context, channelId)
-            } else {
-                Notification.Builder(context)
-            }
-        return build.setContentTitle("")
-            .setContentText("")
-            .setAutoCancel(true)
-            .build()
-    }
-}
-```
-2. 启动服务
-```
-fun startService(context: Context) {
-    val intent = Intent(context, XService::class.java)
-    intent.action = Intent.ACTION_SCREEN_OFF
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        context.startForegroundService(intent)
-    } else {
-        context.startService(intent)
-    }
-}
-```
 
 ## Android Studio升级问题
 1.java版本问题
