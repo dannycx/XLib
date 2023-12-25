@@ -1,5 +1,22 @@
 # Android Studio构建问题
 
+**解决org.gradle.api.tasks.TaskExecutionException: Execution failed for task ‘:framework:compileDebugJavaWithJavac**
+1. 项目运行时检查NDK，NDK异常（无NDK或NDK有问题）
+* 解决：项目运行时不检查NDK，FIle -> Settings -> Android NDK取消勾选（NDK项目不可作此操作）
+2. 检查sdk是否有问题
+3. 检查build.gradle 相关版本是否存在异常
+4. 查看gradle版本，并检查相关api是否过期
+5. 使用命令查看完整错误信息
+```
+gradlew compileDebug --stacktrace -info
+gradlew compileDebug --stacktrace -debug
+gradlew compileDebugSources --stacktrace -info
+```
+6. 检查相关依赖引用是否正确
+7. 重复依赖检查包冲突
+* gradlew -q app:dependencies
+* implementation('com.xxx:xxx:1.0.0' exclude group:"com.xxx", module: "xxx")
+
 **Android Studio执行Run安装成功，但启动的还是原应用页面**
 * AS -> File -> Invalidate Caches ... -> Invalidate and Restart -> Run
 
