@@ -6,28 +6,29 @@
 ```
 // 1. 启动
 fun adapterStartService(context: Context) {
-	val service = ComponentName("com.dcxing.xxx", "com.dcxing.xxx.XxxService")
-	val intent = Intent()
-	intent.setComponent(service)
-	// val intent = Intent(context, XxxService::java.class)
-	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-	    context.startForegroundService(intent)
-	} else {
-	    context.startService(intent)
-	}
+    val service = ComponentName("com.dcxing.xxx", "com.dcxing.xxx.XxxService")
+    val intent = Intent()
+    intent.setComponent(service)
+    // val intent = Intent(context, XxxService::java.class)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        context.startForegroundService(intent)
+    } else {
+        context.startService(intent)
+    }
 }
 
 // 2. XxxService.class
 class XxxService: Service() {
-	override fun onBind(intent: Intent?): IBinder? = null
+    override fun onBind(intent: Intent?): IBinder? = null
 
-	override fun onStartCommand(intent: Intent, flags: Int, startId: Int) {
-	    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-	        startForeground(100, createNotify())
-	    }
-	}
+    override fun onCreate() {
+        super.onCreate()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForeground(100, createNotify())
+        }
+    }
 
-	private fun createNotify(): Notification {
+    private fun createNotify(): Notification {
         val build: Notification.Builder =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
@@ -41,7 +42,7 @@ class XxxService: Service() {
             .setContentText("")
             .setAutoCancel(true)
             .build()
-	}
+    }
 }
 
 // 3. AndroidManifest.xml
