@@ -2,7 +2,7 @@
 
 **解决org.gradle.api.tasks.TaskExecutionException: Execution failed for task ‘:framework:compileDebugJavaWithJavac**
 1. 项目运行时检查NDK，NDK异常（无NDK或NDK有问题）
-* 解决：项目运行时不检查NDK，FIle -> Settings -> Android NDK取消勾选（NDK项目不可作此操作）
+* 解决：项目运行时不检查NDK，FIle -> Settings -> Android NDK取消勾选（NDK项目不可做此操作）
 2. 检查sdk是否有问题
 3. 检查build.gradle 相关版本是否存在异常
 4. 查看gradle版本，并检查相关api是否过期
