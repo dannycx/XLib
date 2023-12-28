@@ -58,6 +58,9 @@ class CrashHandler: Thread.UncaughtExceptionHandler {
         } catch (e: InterruptedException) {
             LogTool.i("InterruptedException: ${e.message}")
         }
+
+        // 杀死该应用进程
+        android.os.Process.killProcess(android.os.Process.myPid())
         exitProcess(0)
 //        val result = StringWriter()
 //        val printWriter = PrintWriter(result)
