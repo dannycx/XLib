@@ -67,3 +67,44 @@ try {
 </manifest>
 ```
 
+## 退出app
+1. 关闭所有打开的activity
+2. 调用exitProcess(0) 或 Process.killProcess(Process.myPid())
+### 方式一
+```
+import android.app.Activity
+
+object ActivityTool {
+    @JvmStatic
+    private val activityList = arrayListOf<Activity>()
+    
+    fun addActivity(activity: Activity) {
+        activityList.add(activity)
+    }
+    
+    fun removeActivity(activity: Activity) {
+        activityList.remove(activity)
+    }
+    
+    fun finishAll() {
+        if (activityList.isEmpty()) {
+            return
+        }
+        for (activity in activityList) {
+            if (!activity.isFinishing) {
+                activity.finish()
+            }
+        }
+        activityList.clear()
+    }
+}
+```
+
+### 方式二
++ finishAffinity关闭所有activity
+```
+// Activity.class
+finishAffinity()
+// Fragment.class
+activity.finishAffinity()
+```
