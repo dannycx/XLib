@@ -33,6 +33,7 @@ Override fun onBackPressed() {
 ```
 2. 异常场景分析
 * 页面重定向场景
+
 ***使用HitTestResult判断是否发生重定向，过滤重定向的url不入返回栈***
 ```
 # Activity.class
