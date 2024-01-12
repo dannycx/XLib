@@ -19,6 +19,7 @@
 ## AS个性设置
 * 背景：File -> Appearance & Behavior -> Appearance -> Background Image...
 * 返回前进键：File -> Appearance & Behavior -> Menus and Toolbars -> Main Menu -> Navigate 拖拽至 Main Toolbar Center
+* xml预览默认split：File -> Editor -> Design Tools
 
 ## TraceView数据采集和分析
 - 单次执行耗时的方法
